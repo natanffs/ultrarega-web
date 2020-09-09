@@ -4,6 +4,10 @@ const socket = socketio('http://192.168.0.107:3000', {
     autoConnect: false,
 })
 
+// function subscribeToNewUsers(subscribeFunction) {
+//     socket.on('new-insert', subscribeFunction)
+// }
+
 function connect() {
     socket.connect()
 }
@@ -14,7 +18,7 @@ function disconnect() {
     }
 }
 
-export default {
+export {
     connect,
     disconnect
 }
