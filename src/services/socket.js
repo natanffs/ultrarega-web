@@ -5,7 +5,7 @@ const socket = socketio('http://192.168.0.107:3000', {
 })
 
 function subscribeToNewUsers(subscribeFunction) {
-    socket.on('new-insert', subscribeFunction)
+    socket.on('new-insert', () => { alert('disgreta') })
 }
 
 function listenUpdates(updateFunction) {
@@ -13,7 +13,9 @@ function listenUpdates(updateFunction) {
 }
 
 function connect() {
+    disconnect()
     socket.connect()
+    return socket
 }
 
 function disconnect() {
