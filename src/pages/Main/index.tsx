@@ -13,12 +13,11 @@ interface userI {
     permissoes: [Number]
 }
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5NzM4NjA1LCJleHAiOjE1OTk4MjUwMDV9.CiEoWYAQzHTd01clXVPjv_RbwCVUeIdu2Nghiwy_ZkM"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk5NzgwMzUzLCJleHAiOjE1OTk4NjY3NTN9.a4D8igzSzoSZEa9LF2YXYUmC06PZNWVOmg1vb4l9XuA"
 
 const Main: React.FC = () => {
     const [socket, setSocket] = useState<SocketIOClient.Socket>(connect())
     const [users, setUsers] = useState<userI[]>([])
-    const [usersComponent, setUsersComponent] = useState<any[]>([])
 
     useEffect(() => {
         //setupWebSocket()
@@ -41,6 +40,12 @@ const Main: React.FC = () => {
         })
 
         socket.on('new-update', (update: userI) => {
+            setUsers(users.map(u => 
+                u.id === update.id ? update : u    
+            ))
+        })
+
+        socket.on('pivot-update', (update: userI) => {
             setUsers(users.map(u => 
                 u.id === update.id ? update : u    
             ))

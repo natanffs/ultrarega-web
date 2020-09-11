@@ -1,6 +1,6 @@
 import socketio from 'socket.io-client'
 
-const socket = socketio('http://192.168.0.107:3000', {
+const socket = socketio('http://localhost:3000', {
     autoConnect: false,
 })
 
