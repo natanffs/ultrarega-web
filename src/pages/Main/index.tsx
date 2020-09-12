@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from './styles'
 import api from '../../services/api'
 import { connect, disconnect, subscribeToNewUsers, listenUpdates } from '../../services/socket.js'
+import socketio from 'socket.io-client'
 
 interface userI {
     id: Number,
@@ -12,42 +13,43 @@ interface userI {
     permissoes: [Number]
 }
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5NjUyMDg1LCJleHAiOjE1OTk3Mzg0ODV9.slkSdiATrUJh1FNnkwe7HNBt3TWm7OoPJoZi_ZUBkDg"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk5NzgwMzUzLCJleHAiOjE1OTk4NjY3NTN9.a4D8igzSzoSZEa9LF2YXYUmC06PZNWVOmg1vb4l9XuA"
 
 const Main: React.FC = () => {
+    const [socket, setSocket] = useState<SocketIOClient.Socket>(connect())
     const [users, setUsers] = useState<userI[]>([])
 
     useEffect(() => {
-        setupWebSocket()
+        //setupWebSocket()
         loadUsers()
     }, [])
 
     useEffect(() => {
-        // subscribeToNewUsers(user => setUsers([...users, user]))
-        // subscribeToNewUsers(function(user: userI) {
-        //     setUsers([...users, user])
-        // })
-        
-            console.log('atualizou')
+        if(socket && users.length > 0) 
+            setupWebSocket()
     }, [users])
 
-    useEffect(() => {
-        if (users && users.length > 0) {
-            listenUpdates(function (user: userI) {
-                let userstmp = users
-
-                const index = userstmp.findIndex(u => u.id === user.id)
-                userstmp[index] = user
-
-                setUsers(userstmp)
-            })
-        }
-    })
+    function updateUser(usr: userI) {
+        console.log(users[0])
+    }
 
     function setupWebSocket() {
-        disconnect()
 
-        connect()
+        socket.on('new-insert', (newUser: userI) => {
+            setUsers([...users, newUser]) //está sobreescrevendo o state
+        })
+
+        socket.on('new-update', (update: userI) => {
+            setUsers(users.map(u => 
+                u.id === update.id ? update : u    
+            ))
+        })
+
+        socket.on('pivot-update', (update: userI) => {
+            setUsers(users.map(u => 
+                u.id === update.id ? update : u    
+            ))
+        })
     }
 
     async function loadUsers() {
