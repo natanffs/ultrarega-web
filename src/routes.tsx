@@ -5,6 +5,8 @@ import Main from './pages/Main'
 import Home from './pages/Home'
 import UtrList from './pages/UtrList'
 import Utr from './pages/Utr'
+import Users from './pages/Users'
+import User from './pages/User'
 
 function checkAuthenticated(){
     return localStorage.getItem('token') ? Home : Login 
@@ -28,6 +30,8 @@ const Routes = () => {
             <Route exact component={Main} path="/main"/>
             <Route exact component={Utr} path="/pivot/:id"/>
             <Route exact component={UtrList} path="/pivot"/>
+            <Route exact component={Users} path="/users"/>
+            <Route exact component={User} path="/user:id"/>
         </Switch>
         </BrowserRouter>
     )

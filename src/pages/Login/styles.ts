@@ -46,8 +46,6 @@ export const Input = styled.input`
     padding: 2px 7px;
     font-size:15px;
     
-    
-    /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
 `
 
 export const Button = styled.button`
