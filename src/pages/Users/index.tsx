@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom'
 import Header from '../Header'
 import api from '../../services/api'
 import { Container, ListUsers, Labels, Label, User, NameItem, Buttons, Button, FormUser, Input } from './styles';
@@ -21,7 +20,7 @@ const Users: React.FC = () => {
   const [user, setUser] = useState<userI>({})
   const [users, setUsers] = useState([])
   const [visibleForm, setVisibleForm] = useState(false)
-  const history = useHistory()
+  
   
 
   useEffect(() => {
@@ -53,13 +52,14 @@ const Users: React.FC = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
     }).then((response)=>{
-        alert(`sucesso: ${response.data.message}`)
-        console.log(response.data.message)
+      
         setVisibleForm(false)
         loadUsers()
+        alert(`sucesso: ${response.data.message}`)
+
     }).catch((error)=>{
       alert(`erro: ${error.data.message}`)
-      console.log(error.data.message)
+      
     })
   }
 
@@ -70,12 +70,13 @@ const Users: React.FC = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       }).then((response)=>{
-          alert(`sucesso: ${response.data.message}`)
-          console.log(response.data.message)
+          
           loadUsers()
+          alert(`sucesso: ${response.data.message}`)
+
       }).catch((error)=>{
         alert(`erro: ${error.data.message}`)
-        console.log(error.data.message)
+        
       })
   }
 
@@ -93,13 +94,14 @@ const Users: React.FC = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
     }).then((response)=>{
-        alert(`sucesso: ${response.data.message}`)
-        console.log(response.data.message)
+        
         setVisibleForm(false)
         loadUsers()
+        alert(`sucesso: ${response.data.message}`)
+
     }).catch((error)=>{
       alert(`erro: ${error.data.message}`)
-      console.log(error.data.message)
+      
     })
   }
 

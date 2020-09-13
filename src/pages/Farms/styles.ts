@@ -5,12 +5,12 @@ export const Container = styled.div`
     padding-top: 6vh;
     display:flex;
     justify-content:center;
-    
+    align-items:center;
+    flex-direction:column;    
 `;
 
 
-
-export const ListUsers = styled.div`
+export const FormFarm = styled.div`
     width:80vw;
     height: 100%;
     margin-top:20px;
@@ -18,28 +18,44 @@ export const ListUsers = styled.div`
     display:flex;
     flex-direction:column;
     align-content:center;
-   
-
 `
 
 
-export const Labels = styled.div`
-    width: 90%;
-    height: 4.5vh;
+export const Input = styled.input`
+    width: 100%;
+    height: 33px;
+    border-radius: 5px;
+    border: 1px solid #DBD7D7;
+    padding: 2px 7px;
+    font-size:15px;
+    
+`
+export const ListFarms = styled.div`
+    width:80vw;
+    height: 100%;
+    margin-top:20px;
+     
+    display:flex;
+    flex-direction:column;
+    
+   
+   
 
+`
+export const Labels = styled.div`
+    width: 100%;
+    height: 4.5vh;
+    margin-top:10px;
     display:flex;
     flex-direction:row;
-    
-
-    color: white;
-    font-size: 18px;
-
-    
+  
 
 `
 
 export const Label = styled.div`
-    
+    color: white;
+    font-size: 18px;
+    width:40%;
     background-color: #5C84D2;
     margin-right:5px;
     display:flex;
@@ -47,28 +63,33 @@ export const Label = styled.div`
     padding-left: 15px;
     justify-content: space-between;
 
+    
 `
 
-export const User = styled.div`
+export const Farm = styled.div`
     color: white;
     font-size: 15px;
-
+    
+    height: 10vh;
     width: 100%;
-    height: 4vh;
+   
     display:flex;
     flex-direction:row;
     margin-top:5px;
+   align-items:center;
    
 `
 
 export const NameItem = styled.div`
     width: 40%;
-    height: 4vh;
+    height: 100%;
     display:flex;
     background-color: #779BE2;
     margin-right:5px;
-    padding-left: 15px;
+    
+    padding: 5px;
     align-items:center;
+   
 
    
 `

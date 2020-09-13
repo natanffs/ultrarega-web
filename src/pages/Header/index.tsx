@@ -15,9 +15,9 @@ const Header: React.FC = () => {
     <Container>
       <Menu>
         <MenuItem to='/'>Tela Inicial</MenuItem>
-        <MenuItem to='/users'>Usuários</MenuItem>
-        <MenuItem  to='/pivot'>Pivos</MenuItem>
-        <MenuItem  to='/'>Fazendas</MenuItem>
+        <MenuItem to='/usuarios'>Usuários</MenuItem>
+        <MenuItem  to='/pivos'>Pivos</MenuItem>
+        <MenuItem  to='/fazendas'>Fazendas</MenuItem>
         <Button onClick={onSubmit}>Sair</Button>
         </Menu>
     </Container>
