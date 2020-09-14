@@ -116,3 +116,11 @@ export const Button = styled.button`
     border-radius: 5px;
 
 `
+export const TextInput =styled.label`
+color:gray;
+font-size:15px;
+`
+export const CheckBox = styled.input`
+    width:20px;
+    height:20px;
+`

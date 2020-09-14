@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
-import { Container, ListUsers, Labels, Label, User, NameItem, Buttons, Button, FormUser, Input } from './styles';
+import { Container, ListUsers, Labels, Label, User, NameItem, Buttons, Button, FormUser, Input, CheckBox, TextInput } from './styles';
 
 interface userI {
   codigo_usuario?: number,
@@ -11,12 +11,22 @@ interface userI {
   senha?:string,
   telefone?: string,
   email?: string,
+  codigo_permissoes?: [Number]
 
   
 }
 
+interface permissionI{
+  codigo_permissao?: number,
+  nome?: string,
+ 
+}
+
+
 const Users: React.FC = () => {
 
+  const [permissions, setPermissions] = useState<permissionI[]>([])
+  const [selectedPermissions, setSelectedPermissions] = useState<number[]>([])
   const [user, setUser] = useState<userI>({})
   const [users, setUsers] = useState([])
   const [visibleForm, setVisibleForm] = useState(false)
@@ -87,7 +97,8 @@ const Users: React.FC = () => {
       numero_matricula: user.numero_matricula,
       
       telefone: user.telefone,
-      email: user.email
+      email: user.email,
+      codigo_permissoes: selectedPermissions
     },{
       headers: {
         "Content-Type": "application/json",
@@ -122,6 +133,22 @@ const Users: React.FC = () => {
         <Input name='email' type='email' value={user.email} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({...user,  email:text.target.value })}/>
         <Label>Senha</Label>
         <Input name='password' type='password' value={user.senha} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({...user,  senha:text.target.value })}/>
+        
+        <ListUsers>
+            <Label>Vincular usuários</Label>
+            {permissions.length > 0 && permissions.map((p) =>
+              <User key={p.codigo_permissao}>
+                <CheckBox type="checkbox" value={p.codigo_permissao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
+                  if (text.target.checked) {
+                    setSelectedPermissions([...selectedPermissions, Number(text.target.value)])
+                  } else {
+                    setSelectedPermissions(selectedPermissions.filter(su => su !== Number(text.target.value)))
+                  }
+                }} />
+                <TextInput>{p.nome}</TextInput>
+              </User>)}
+          </ListUsers>
+        
         <Button onClick={registerUser}>Cadastrar</Button>
         <Button onClick={updateUser}>Salvar</Button>
       </FormUser> 

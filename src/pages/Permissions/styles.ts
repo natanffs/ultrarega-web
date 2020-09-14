@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Container = styled.div`
     width: 100%;
     padding-top: 6vh;
@@ -11,7 +10,7 @@ export const Container = styled.div`
 `;
 
 
-export const FormFarm = styled.div`
+export const FormPermissions = styled.div`
     width:80vw;
     height: 100%;
     margin-top:20px;
@@ -31,36 +30,37 @@ export const Input = styled.input`
     font-size:15px;
     
 `
-export const ListFarms = styled.div`
+export const ListPermissions = styled.div`
     width:80vw;
     height: 100%;
     margin-top:20px;
      
     display:flex;
     flex-direction:column;
-    
-   
+    align-content:center;
    
 
 `
 export const Labels = styled.div`
     width: 100%;
-    height: 6vh;
+    height: 4.5vh;
     margin-top:10px;
     display:flex;
     flex-direction:row;
-  
+    
+
+   
+
+    
 
 `
 
 export const Label = styled.div`
     color: white;
     font-size: 18px;
-    width:40%;
+    width:50%;
     background-color: #5C84D2;
     margin-right:5px;
-    margin-top:15px;
-    
     display:flex;
     align-items:center;
     padding-left: 15px;
@@ -69,48 +69,36 @@ export const Label = styled.div`
     
 `
 
-export const Farm = styled.div`
+export const Permission = styled.div`
     color: white;
     font-size: 15px;
-    
-    height: 10vh;
+
     width: 100%;
-   
+    height: 4vh;
     display:flex;
     flex-direction:row;
     margin-top:5px;
-   align-items:center;
    
 `
 
 export const NameItem = styled.div`
-    width: 40%;
-    height: 100%;
+    width: 50%;
+    height: 4vh;
     display:flex;
     background-color: #779BE2;
     margin-right:5px;
-    
-    padding: 5px;
+    padding-left: 15px;
     align-items:center;
-   
 
    
 `
-export const Buttons = styled.div`
 
-    display:flex;
-    flex-direction:row;
-    width: 10%;
-    height: 4vh;
-    
-
-`
 
 export const Button = styled.button`
     color: white;
     font-size:12px;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 4vh;
     justify-content:center;
     align-items:center;
@@ -121,23 +109,4 @@ export const Button = styled.button`
 
 `
 
-export const ListUsers = styled.div`
-    display:flex;
-    flex-direction: column;
 
-`
-
-export const User = styled.div`
-    margin: 5px 0 5px 15px;
-    display: flex;
-    flex-direction: row;
-`
-
-export const TextInput =styled.label`
-color:gray;
-font-size:15px;
-`
-export const CheckBox = styled.input`
-    width:20px;
-    height:20px;
-`
