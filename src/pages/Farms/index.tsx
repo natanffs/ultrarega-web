@@ -94,9 +94,7 @@ const Farms: React.FC = () => {
     })
   }
 
-  async function registerPermissions() {
-    
-  }
+  
   async function updateFarm() {
     await api.put('farms/' + farm.codigo_fazenda, {
       nome_fazenda: farm.nome_fazenda,

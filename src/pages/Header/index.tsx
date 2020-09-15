@@ -17,6 +17,7 @@ const Header: React.FC = () => {
         <MenuItem to='/'>Tela Inicial</MenuItem>
         <MenuItem to='/usuarios'>Usuários</MenuItem>
         <MenuItem to='/permissoes'>Permissões</MenuItem>
+        <MenuItem to='/modeloutr'>Modelo Utr</MenuItem>
         <MenuItem  to='/pivos'>Pivos</MenuItem>
         <MenuItem  to='/fazendas'>Fazendas</MenuItem>
         <Button onClick={onSubmit}>Sair</Button>

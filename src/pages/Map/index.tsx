@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleMap from 'google-map-react'
+import {GoogleApiWrapper} from 'google-maps-react';
 import { Container } from './styles';
 
 interface mapI {
@@ -16,32 +16,15 @@ interface mapI {
 
 
 
-const Map = ({ center, pivots, zoom }: mapI) => {
+const Map = () => {
 
- 
-  const defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33
-    },
-    zoom: 11
-  };
+ const key= "AIzaSyA_o2dHh1nlRxMM8-0qNJdTzs7ZllZHyrs"
+  
 
 
   return (
     <Container>
 
-      <GoogleMap bootstrapURLKeys={{ key: "AIzaSyA_o2dHh1nlRxMM8-0qNJdTzs7ZllZHyrs" }}
-        defaultCenter={center}
-        defaultZoom={zoom} >
-
-        {/* <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
-        /> */}
-
-      </GoogleMap>
 
 
     </Container>

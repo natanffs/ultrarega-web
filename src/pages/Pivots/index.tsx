@@ -191,7 +191,7 @@ const Pivots: React.FC = () => {
           <Input value={pivot.religamento_energia} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_energia: text.target.value })} />
           <Label>Religamento por pressao</Label>
           <Input value={pivot.religamento_pressao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_pressao: text.target.value })} />
-          <Label>Fazenda</Label>
+          <Label>Vincula fazenda</Label>
           <Select  onChange={(text) => setPivot({...pivot, codigo_fazenda: Number(text.target.value)})}>
             {farms.length >0 && farms.map((f:farmI)=>
                <Option key={f.codigo_fazenda} value={f.codigo_fazenda}>{f.nome_fazenda}</Option>            

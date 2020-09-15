@@ -11,13 +11,6 @@ const UtrList: React.FC = () => {
     <Container>
       <Header />
       <Wrapper>
-
-        <WrapperMap>
-        <Map center={{lat:59.955413, lng:30.337844}} 
-        pivots={[{lat:59.955413, lng:30.337844}]}
-        zoom={11}/>
-        </WrapperMap>
-
         <ListUtr>
           <Labels>
             <Label>Fazenda</Label>
