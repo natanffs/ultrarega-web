@@ -8,6 +8,6 @@ export default createGlobalStyle`
    body{
     text-decoration: none;
     font-family: ---apple-system, Roboto, BlinkMacSystemFont, 'Segoe UI',  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #e2eff7;
+    background-color: #fff;
    }
 `
