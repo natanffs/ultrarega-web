@@ -72,16 +72,13 @@ const Home: React.FC = () => {
             <Label>Potencial Hidrico</Label>
             <Label>Ponto de murcha</Label>
           </Labels>
-          {utrs.length > 0 && utrs.map((u: utrI) =>
+          {/* {utrs.length > 0 && utrs.map((u: utrI) =>
             <Utr>
               <NameItem >{u.nome_fazenda}</NameItem>
               <NameItem>{u.nome_utr_now}</NameItem>
 
             </Utr>
-          )}
-          <br />
-         
-
+          )} */}
         </ListUtr>
 
       </Wrapper>

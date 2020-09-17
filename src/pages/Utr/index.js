@@ -81,4 +81,3 @@ const Utr = () => {
 };
 
 export default Utr;
-0
