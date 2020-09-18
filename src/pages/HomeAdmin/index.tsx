@@ -21,8 +21,8 @@ interface utrI {
   angulo_termino?: number,
   codigo_pivo?: number,
   capacidade_campo?: number,
-  taxa_lamina_atual?: number,
   ponto_murcha?: number,
+  taxa_lamina_atual?: number,
   potencial_hidrico?: number,
   informacao_sentido?: string,
   calcs?: calcsI[],
@@ -30,7 +30,7 @@ interface utrI {
 
 
 
-const Home: React.FC = () => {
+const HomeAdmin: React.FC = () => {
 
 
   const [utrs, setUtrs] = useState([])
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   }, [])
 
   async function loadUtrs() {
-    await api.get('utrs/' , {
+    await api.get('utrs/', {
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -53,7 +53,16 @@ const Home: React.FC = () => {
     }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
 
-  
+  async function loadPivots() {
+    await api.get('pivots', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      //setPivots(response.data)
+    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+  }
 
   return (
 
@@ -93,4 +102,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomeAdmin;

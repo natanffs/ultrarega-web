@@ -1,11 +1,10 @@
+
 import React, { useState } from 'react';
 import{useHistory} from 'react-router-dom'
 
-
 import { Container, MenuItem, Button, Menu, MenuDropdown,Dropdown } from './styles';
 
-const Header: React.FC = () => {
-
+const HeaderAdmin: React.FC = () => {
   const history = useHistory();
   const [visibleCadastrar, setVisibleCadastrar] = useState(false)
   const [visiblePerfil, setVisiblePerfil] = useState(false)
@@ -45,7 +44,6 @@ const Header: React.FC = () => {
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/pivos'>Pivos</MenuItem>
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/fazendas'>Fazenda</MenuItem>
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem>
-            <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/utrs'>Utrs</MenuItem>
           </Dropdown>
         </MenuDropdown>
 
@@ -69,8 +67,7 @@ const Header: React.FC = () => {
                         setVisiblePerfil(false)
                       }} className="dropdown">Configurações
           <Dropdown style={{display: visibleConfiguracao ? 'flex' : 'none'}}>
-            {/* as opcoes abaixo estao sem rota definida */}
-            <MenuItem onClick={()=>{setVisibleConfiguracao(false)}} to= ''>Usuarios</MenuItem> 
+            <MenuItem onClick={()=>{setVisibleConfiguracao(false)}} to= ''>Usuarios</MenuItem>
             <MenuItem  onClick={()=>{setVisibleConfiguracao(false)}} to= ''>Visualizações</MenuItem>
            
           </Dropdown>
@@ -82,4 +79,5 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+
+export default HeaderAdmin;

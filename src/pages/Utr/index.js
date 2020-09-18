@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Farm, NameItem, Labels, Label } from './styles';
+import { Container, Wrapper, Farm, NameItem, Labels, Label, Button } from './styles';
 import Header from '../Header'
 import api from '../../services/api'
 import { connect, disconnect, subscribeToNewUsers, listenUpdates } from '../../services/socket.js'
+import { useHistory } from 'react-router-dom'
 
 const Utr = () => {
   const [socket, setSocket] = useState(connect())
   const [utr, setUtr] = useState({})
   const [, , codigo_utr] = window.location.pathname.split('/')
+  const history = useHistory()
 
   useEffect(() => {
     loadUtr(Number(codigo_utr))
@@ -60,22 +62,25 @@ const Utr = () => {
 
     <Container>
       <Header />
-      
-      <Labels>
-        <Label>Nome</Label>
-        <Label>Valor</Label>
+      {/* <Map/> */}
 
-      </Labels>
-      {
-        iterateJson().map(item => (
-          <Farm >
-            <NameItem>{item.name}</NameItem>
-            <NameItem>{item.value}</NameItem>
-          </Farm>
-        ))
+      <Wrapper>
+        <Button onClick={()=>{history.push(`/admin/cadastros/planorega/${codigo_utr}`)}}>Criar plano de rega</Button>
+        <Labels>
+          <Label>Nome</Label>
+          <Label>Valor</Label>
 
-      }
+        </Labels>
+        {
+          iterateJson().map(item => (
+            <Farm >
+              <NameItem>{item.name}</NameItem>
+              <NameItem>{item.value}</NameItem>
+            </Farm>
+          ))
 
+        }
+      </Wrapper>
     </Container>
   </>);
 };
