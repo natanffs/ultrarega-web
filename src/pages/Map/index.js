@@ -1,31 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from './styles';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
 
-const Map = () => {
+function Map() {
+    return (
+        <GoogleMap
+            defaultZoom={10}
+            defaultCenter={{ lat: -17.226837, lng: -46.8873441 }}
+        />
+    )
+}
 
-  const [map, setMap] = useState({})
-  const key= "AIzaSyA_o2dHh1nlRxMM8-0qNJdTzs7ZllZHyrs"
-  
- //função de criação do mapa
-  function initMap(){
-      new google.maps.Map(document.getElementById("map"), {
-        conter: {
-          lat: -34.397,
-          lng: 150.644
-        },
-        zoom: 8
-      });
-  }
+const WrappedMap = withScriptjs(withGoogleMap(Map))
 
-  useEffect({initMap()},[])
+const App = () => {
+    const key = "AIzaSyDF_Wx8hh-ZCMknKUD7NBxtJQY6sqdnT4U"
 
-  return (
-    <Container id ='map' >
-
-
-<script src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA_o2dHh1nlRxMM8-0qNJdTzs7ZllZHyrs&callback=initMap`}></script>
-    </Container>
-  );
+    return (
+        <div style={{ width: "100vw", height: "50vh" }}>
+            <WrappedMap
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${key}`}
+                loadingElement={<div style={{ height: "100%" }} />}
+                containerElement={<div style={{ height: "100%" }} />}
+                mapElement={<div style={{ height: "100%" }} />}
+            >
+                <Marker position={{ lat: -17.226837, lng: -46.8873441 }} />
+            </WrappedMap>
+        </div>
+    );
 };
 
-export default Map;
+export default App;
