@@ -40,9 +40,9 @@ export const Labels = styled.div`
 `
 
 export const Label = styled.div`
-    
+     width: 16.6%;
     height: 100%;
-    background-color: #5C84D2;
+    background-color: #818182;
    /* margin-right:5px; */
     display:flex;
     align-items:center;
@@ -51,7 +51,7 @@ export const Label = styled.div`
 `
 
 export const Utr = styled.div`
-    color: white;
+    color: gray;
     font-size: 15px;
 
     width: 100%;
@@ -63,7 +63,7 @@ export const Utr = styled.div`
 `
 
 export const NameItem = styled.div`
-   width: calc(100% / 6);
+   width: 16.6%;
     height: 100%;
     display:flex;
     background-color: #FAFAFA;
