@@ -28,7 +28,7 @@ const HeaderAdmin: React.FC = () => {
           }} className="dropdown">Equipamentos 
           <Dropdown style={{display: visibleEquipamentos ? 'flex' : 'none'}}>
             <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/pivos'>Pivos</MenuItem>
-            <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/tratores'>Tratores</MenuItem>
+            {/* <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/tratores'>Tratores</MenuItem> */}
            
           </Dropdown>
         </MenuDropdown>
@@ -43,7 +43,7 @@ const HeaderAdmin: React.FC = () => {
             <MenuItem onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/usuarios'>Usuário</MenuItem>
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/pivos'>Pivos</MenuItem>
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/fazendas'>Fazenda</MenuItem>
-            <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem>
+            {/* <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem> */}
           </Dropdown>
         </MenuDropdown>
 
