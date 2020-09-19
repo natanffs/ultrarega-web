@@ -89,7 +89,7 @@ const UtrRegister: React.FC = () => {
 
   return (
     <Container>
-      <Header />
+      {/* <Header /> */}
       <Wrapper>
         <h1>Cadastrar UTR</h1>
         <FormUtr >

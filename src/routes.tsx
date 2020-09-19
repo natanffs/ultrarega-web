@@ -3,7 +3,7 @@ import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import HomeAdmin from './pages/HomeAdmin'
-import Utr from './pages/Utr/index.js'
+import Utr from './pages/Utr/index.jsx'
 import Users from './pages/Users'
 import User from './pages/User'
 import Farms from './pages/Farms'
@@ -16,6 +16,7 @@ import UtrRegister from './pages/UtrRegister'
 import Tractor from './pages/Tractor'
 import TractorRegister from './pages/TractorRegister'
 import PlanoRega from './pages/PlanoRega'
+import Header from './pages/Header'
 
 // import Permissions from './pages/Permissions'
 import ModelUtr from './pages/ModelUtr'
@@ -27,6 +28,7 @@ function checkAuthenticated(){
 const Routes = () => {
     return (
         <BrowserRouter>
+        
         <Switch>
             <Route exact  path="/" render={()=>{
                 return(
@@ -36,13 +38,13 @@ const Routes = () => {
 
                 )
             }}/>
-
+            
             <Route exact component={Login} path="/login"/>
             <Route exact component={Home} path="/home"/>
            
             <Route exact component={Users} path="/usuarios"/>
             <Route exact component={User} path="/usuarios/:id"/>
-            {/* <Route exact component={Utr} path="/utrs/:id"/> */}
+            <Route exact component={Utr} path="/utrs/:id"/>
             <Route exact component={Farms} path="/fazendas"/>
             <Route exact component={Tractor} path="/tratores"/>
             <Route exact component={TractorRegister} path="/cadastros/tratores"/>
@@ -61,7 +63,7 @@ const Routes = () => {
             <Route exact component={ModelUtr} path="/admin/modeloutr"/>
             
             <Route exact component={Users} path="/admin/usuarios"/>
-            {/* <Route exact component={Utr} path="/admin/utrs/:id"/> */}
+            <Route exact component={Utr} path="/admin/utrs/:id"/>
             <Route exact component={Farms} path="/admin/fazendas"/>
             <Route exact component={Pivots} path="/admin/pivos"/>
             <Route exact component={Tractor} path="/admin/tratores"/>
@@ -72,7 +74,7 @@ const Routes = () => {
             <Route exact component={UtrRegister} path="/admin/cadastros/utrs"/>
             <Route exact component={ModelUtrRegister} path="/admin/cadastros/modeloutr"/>
             <Route exact component={PlanoRega} path="/admin/cadastros/planorega/:id"/>
-
+            
         </Switch>
         </BrowserRouter>
     )

@@ -38,9 +38,10 @@ const Login: React.FC = () => {
       //     history.push('admin/home')
       // })
       let isAdmin = false
-      console.log(permissions)
+      
       for (var i = 0; 1 < permissions.length; i++) {
         if (permissions[i].grupo_permissao === "000") {
+          localStorage.setItem('isAdmin', "1")
           history.push('/admin/home')
           isAdmin = true
         }

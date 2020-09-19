@@ -18,9 +18,13 @@ const Header: React.FC = () => {
   }
   return (
     <Container>
+      
 
-        <Menu>
+       
+ 
+       <Menu>
         <MenuItem to='/'>Tela Inicial</MenuItem>
+        
         <MenuDropdown onClick={()=>{
           visibleEquipamentos? setVisibleEquipamentos(false) : setVisibleEquipamentos(true)
                         setVisibleCadastrar(false)
@@ -28,7 +32,7 @@ const Header: React.FC = () => {
                         setVisiblePerfil(false)
           }} className="dropdown">Equipamentos 
           <Dropdown style={{display: visibleEquipamentos ? 'flex' : 'none'}}>
-            <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/pivos'>Pivos</MenuItem>
+            <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/admin/pivos'>Pivos</MenuItem>
             {/* <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/tratores'>Tratores</MenuItem> */}
            
           </Dropdown>
@@ -41,8 +45,8 @@ const Header: React.FC = () => {
                         setVisiblePerfil(false)
           }} className="dropdown">Cadastros 
           <Dropdown style={{display: visibleCadastrar ? 'flex' : 'none'}}>
-            <MenuItem onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/usuarios'>Usuário</MenuItem>
-            <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/pivos'>Pivos</MenuItem>
+            <MenuItem onClick={()=>{setVisibleCadastrar(false)}} to= '/admin/cadastros/usuarios'>Usuário</MenuItem>
+            <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/admin/cadastros/pivos'>Pivos</MenuItem>
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/fazendas'>Fazenda</MenuItem>
             {/* <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem> */}
             <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/utrs'>Utrs</MenuItem>
@@ -78,6 +82,10 @@ const Header: React.FC = () => {
         
         <Button onClick={onSubmit}>Sair</Button>
         </Menu>
+
+      
+        
+        
     </Container>
   );
 };
