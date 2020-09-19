@@ -5,7 +5,7 @@ import Header from '../Header'
 import api from '../../services/api'
 import { connect, disconnect, subscribeToNewUsers, listenUpdates } from '../../services/socket.js'
 import { useHistory } from 'react-router-dom'
-
+import Map from '../Map/index'
 
 // interface utrI{
 //     nome?: string,
@@ -70,7 +70,7 @@ const Utr  = () => {
 
             <Container>
                 <Header />
-                {/* <Map/> */}
+                <Map lat={-17.2938126} lng={-46.8558351} />
 
                 <Wrapper>
                     <Button onClick={() => { history.push(`/admin/cadastros/planorega/${codigo_utr}`) }}>Criar plano de rega</Button>

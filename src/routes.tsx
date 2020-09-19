@@ -16,7 +16,6 @@ import UtrRegister from './pages/UtrRegister'
 import Tractor from './pages/Tractor'
 import TractorRegister from './pages/TractorRegister'
 import PlanoRega from './pages/PlanoRega'
-import Header from './pages/Header'
 
 // import Permissions from './pages/Permissions'
 import ModelUtr from './pages/ModelUtr'
