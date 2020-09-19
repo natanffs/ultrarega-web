@@ -42,7 +42,7 @@ const Routes = () => {
            
             <Route exact component={Users} path="/usuarios"/>
             <Route exact component={User} path="/usuarios/:id"/>
-            <Route exact component={Utr} path="/utrs/:id"/>
+            {/* <Route exact component={Utr} path="/utrs/:id"/> */}
             <Route exact component={Farms} path="/fazendas"/>
             <Route exact component={Tractor} path="/tratores"/>
             <Route exact component={TractorRegister} path="/cadastros/tratores"/>
@@ -61,7 +61,7 @@ const Routes = () => {
             <Route exact component={ModelUtr} path="/admin/modeloutr"/>
             
             <Route exact component={Users} path="/admin/usuarios"/>
-            <Route exact component={Utr} path="/admin/utrs/:id"/>
+            {/* <Route exact component={Utr} path="/admin/utrs/:id"/> */}
             <Route exact component={Farms} path="/admin/fazendas"/>
             <Route exact component={Pivots} path="/admin/pivos"/>
             <Route exact component={Tractor} path="/admin/tratores"/>
