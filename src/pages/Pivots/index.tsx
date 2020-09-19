@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
-import { Container, ListPivots, Labels, Label, Pivot, NameItem, Buttons, Button, FormPivot, Input, Select, Option } from './styles';
+import { Container,LabelInput, ListPivots, Labels, Label, Pivot, NameItem, Buttons, Button, FormPivot, Input, Select, Option } from './styles';
 
 interface pivotI {
   codigo_pivo?: number,
-  nome?: string,
+  nome_pivo?: string,
   descricao?: string,
   tipo_pivo?: string,
   raio?: number,
@@ -64,7 +64,7 @@ const Pivots: React.FC = () => {
     await api.post('pivots', {
 
       codigo_pivo: pivot.codigo_pivo,
-      nome: pivot.nome,
+      nome_pivo: pivot.nome_pivo,
       descricao: pivot.descricao,
       tipo_pivo: pivot.tipo_pivo,
       raio: pivot.raio,
@@ -118,7 +118,7 @@ const Pivots: React.FC = () => {
     await api.put('pivots/' + pivot.codigo_pivo, {
 
       codigo_pivo: pivot.codigo_pivo,
-      nome: pivot.nome,
+      nome_pivo: pivot.nome_pivo,
       descricao: pivot.descricao,
       tipo_pivo: pivot.tipo_pivo,
       raio: pivot.raio,
@@ -167,31 +167,43 @@ const Pivots: React.FC = () => {
       <Header />
       {visibleForm &&
         <FormPivot >
-          <Label >Nome</Label>
-          <Input value={pivot.nome} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, nome: text.target.value })} />
-          <Label >Descricão</Label>
+          <LabelInput >Nome</LabelInput>
+          <Input value={pivot.nome_pivo} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, nome_pivo: text.target.value })} />
+          <br/>
+          <LabelInput >Descricão</LabelInput>
           <Input value={pivot.descricao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, descricao: text.target.value })} />
-          <Label>Velocidade Maxima</Label>
+          <br/>
+          <LabelInput>Velocidade Maxima</LabelInput>
           <Input value={pivot.velocidade_maxima} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, velocidade_maxima: Number(text.target.value) })} />
-          <Label>Area irrigada</Label>
+          <br/>
+          <LabelInput>Area irrigada</LabelInput>
           <Input value={pivot.area_irrigada} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, area_irrigada: Number(text.target.value) })} />
-          <Label>Lamina</Label>
+          <br/>
+          <LabelInput>Lamina</LabelInput>
           <Input value={pivot.lamina} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, lamina: text.target.value })} />
-          <Label>Vazão maxima</Label>
+          <br/>
+          <LabelInput>Vazão maxima</LabelInput>
           <Input value={pivot.vazao_maxima} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, vazao_maxima: text.target.value })} />
-          <Label>Altura do centro</Label>
+          <br/>
+          <LabelInput>Altura do centro</LabelInput>
           <Input value={pivot.altura_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, altura_centro: Number(text.target.value) })} />
-          <Label>Latitude do centro</Label>
+          <br/>
+          <LabelInput>Latitude do centro</LabelInput>
           <Input value={pivot.latitude_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, latitude_centro: Number(text.target.value) })} />
-          <Label>Longitude do centro</Label>
+          <br/>
+          <LabelInput>Longitude do centro</LabelInput>
           <Input value={pivot.longitude_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, longitude_centro: Number(text.target.value) })} />
-          <Label>Reversão</Label>
+          <br/>
+          <LabelInput>Reversão</LabelInput>
           <Input value={pivot.reversao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, reversao: text.target.value })} />
-          <Label>Religamento de energia</Label>
+          <br/>
+          <LabelInput>Religamento de energia</LabelInput>
           <Input value={pivot.religamento_energia} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_energia: text.target.value })} />
-          <Label>Religamento por pressao</Label>
+          <br/>
+          <LabelInput>Religamento por pressao</LabelInput>
           <Input value={pivot.religamento_pressao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_pressao: text.target.value })} />
-          <Label>Vincula fazenda</Label>
+          <br/>
+          <LabelInput>Vincula fazenda</LabelInput>
           <Select  onChange={(text) => setPivot({...pivot, codigo_fazenda: Number(text.target.value)})}>
             {farms.length >0 && farms.map((f:farmI)=>
                <Option key={f.codigo_fazenda} value={f.codigo_fazenda}>{f.nome_fazenda}</Option>            
@@ -199,14 +211,14 @@ const Pivots: React.FC = () => {
            
            
           </Select>
+          <br/>
           <Button onClick={registerPivot}>Cadastrar</Button>
+          <br/>
           <Button onClick={updatePivot}>Salvar</Button>
         </FormPivot>
       }
       <ListPivots>
-        <Button onClick={() => {if( farms.length <= 0) {loadFarms()}
-                                setVisibleForm(true)}}>Cadastrar novo usuario</Button>
-        <Labels>
+                <Labels>
           <Label>Pivo</Label>
           <Label>Fazenda</Label>
 
@@ -214,7 +226,7 @@ const Pivots: React.FC = () => {
         {pivots.length > 0 && pivots.map((p: pivotI) =>
 
           <Pivot key={p.codigo_pivo} >
-            <NameItem>{p.nome}</NameItem>
+            <NameItem>{p.nome_pivo}</NameItem>
             <NameItem>{p.nome_fazenda}</NameItem>
 
             <Buttons>

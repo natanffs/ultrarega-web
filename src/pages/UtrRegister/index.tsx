@@ -64,7 +64,7 @@ const UtrRegister: React.FC = () => {
 
   async function registerUtr() {
 
-    alert(utr.codigo_pivo)
+   
     await api.post('utrs', {
 
       descricao: utr.descricao,
