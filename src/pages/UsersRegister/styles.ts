@@ -24,29 +24,31 @@ export const ListUtr = styled.div`
     flex-direction:column;
 
 `
-export const Labels = styled.div`
-    width: 100%;
-    height: 40px;
+// export const Labels = styled.div`
+//     width: 100%;
+//     height: 40px;
 
-    display:flex;
-    flex-direction:row;
+//     display:flex;
+//     flex-direction:row;
     
 
-    color: white;
-    font-size: 18px;
+//     color: white;
+//     font-size: 18px;
 
     
 
-`
+// `
 
 export const Label = styled.div`
-     width: 16.6%;
-    height: 100%;
-    background-color: #818182;
-   /* margin-right:5px; */
+     width: 30%;
+    height: auto;
+    /* background-color: #818182; */
+    margin-bottom: 5px;
+    margin-top: 10px;
     display:flex;
     align-items:center;
-    padding-left: 15px;
+    color: black;
+    font-size: 18px;
 
 `
 
@@ -89,8 +91,8 @@ export const Button = styled.button`
 `
 
 export const Input = styled.input`
-    width: 100%;
-    height: 33px;
+    width: 30%;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid #DBD7D7;
     padding: 2px 7px;
@@ -105,8 +107,46 @@ export const ListUtrs = styled.div`
 `
 
 export const Utrs = styled.div`
-    margin: 5px 0 5px 15px;
+    width: 50%;
+    margin: 5px 0 5px 0px;
     display: flex;
     flex-direction: row;
+    background-color: #DBD7D7;
+    padding: 10px 0px 10px 10px;
 `
 
+export const TextInput = styled.label`
+color:gray;
+font-size:15px;
+padding-left: 10px;
+`
+export const CheckBox = styled.input`
+    width:20px;
+    height:20px;
+`
+export const FormUtr = styled.div`
+    width:80vw;
+    height: 100%;
+    margin-top:20px;
+     
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+`
+export const Select = styled.select`
+    width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #DBD7D7;
+    padding: 2px 7px;
+    font-size:15px;
+`
+
+export const Option = styled.option`
+
+`
+export const WrapperCheckBox = styled.div`
+    display:flex;
+    flex-direction:row;
+    width: 50%;
+`
