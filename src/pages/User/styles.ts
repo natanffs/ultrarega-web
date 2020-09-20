@@ -2,12 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
-    padding-top: 6vh;
+    padding-top: 6%;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;    
 `;
+
+export const Wrapper = styled.div`
+    margin-top: 20px;
+    width: 80%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+  
+
+`
 
 
 export const FormPivot = styled.div`

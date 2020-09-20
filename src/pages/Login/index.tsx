@@ -28,8 +28,8 @@ const Login: React.FC = () => {
     }
     ).then(response => {
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('id_user', response.data.user)
-      localStorage.setItem('permissions_user', response.data.permissions)
+      localStorage.setItem('id_user', JSON.stringify(response.data.user))
+      localStorage.setItem('permissions_user', JSON.stringify( response.data.permissions))
 
       const permissions = response.data.permissions
 
@@ -38,9 +38,10 @@ const Login: React.FC = () => {
       //     history.push('admin/home')
       // })
       let isAdmin = false
-      console.log(permissions)
+      
       for (var i = 0; 1 < permissions.length; i++) {
         if (permissions[i].grupo_permissao === "000") {
+          localStorage.setItem('isAdmin', "1")
           history.push('/admin/home')
           isAdmin = true
         }

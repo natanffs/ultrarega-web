@@ -19,19 +19,7 @@ export const Wrapper = styled.div`
 
 `
 
-export const Farm = styled.div`
-    color: gray;
-    font-size: 15px;
-    
-    height: 6vh;
-    width: 100%;
-   
-    display:flex;
-    flex-direction:row;
-    margin-top:5px;
-   align-items:center;
-   
-`
+
 
 export const NameItem = styled.div`
     width: 50%;
@@ -46,20 +34,14 @@ export const NameItem = styled.div`
 
    
 `
-
-export const Labels = styled.div`
-    width: 100%;
+export const ValueItem = styled.div`
+    
+`
+export const Item = styled.div`
+    width: auto;
     height: 40px;
-
-    display:flex;
-    flex-direction:row;
-    
-
-    color: white;
-    font-size: 18px;
-
-    
-
+    padding: 10px;
+    border: 0px 1px 0 0 solid gray;
 `
 
 export const Label = styled.div`

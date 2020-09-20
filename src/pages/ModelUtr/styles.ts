@@ -9,15 +9,24 @@ export const Container = styled.div`
     flex-direction:column;    
 `;
 
+export const Wrapper = styled.div`
+    margin-top: 20px;
+    width: 80%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+  
 
-export const FormPermissions = styled.div`
+`
+
+export const FormItemUtr = styled.div`
     width:80vw;
     height: 100%;
     margin-top:20px;
      
     display:flex;
     flex-direction:column;
-    align-content:center;
+    justify-content:flex-start;
 `
 
 
@@ -30,47 +39,45 @@ export const Input = styled.input`
     font-size:15px;
     
 `
-export const ListPermissions = styled.div`
-    width:80vw;
-    height: 100%;
-    margin-top:20px;
-     
+export const ListItemUtr = styled.div`
     display:flex;
-    flex-direction:column;
-    align-content:center;
+    flex-direction: column;
    
 
 `
 export const Labels = styled.div`
-    width: 100%;
-    height: 4.5vh;
-    margin-top:10px;
+    width: 100%; 
+    height: 40px;
+    
     display:flex;
     flex-direction:row;
     
-
-   
-
     
+    justify-content: flex-start;
+    align-items:center;
 
+    color: white;
+    font-size: 18px;
+   
 `
 
 export const Label = styled.div`
-    color: white;
-    font-size: 18px;
-    width:45%;
-    background-color: #5C84D2;
-    margin-right:5px;
-    display:flex;
+    width: 16.6%;
+    height: 100%;
+    padding-left: 10px;
     align-items:center;
-    padding-left: 15px;
-    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    display:flex;
+   
+    
+    background-color: #818182;
 
     
 `
 
-export const Permission = styled.div`
-    color: white;
+export const ItemUtr = styled.div`
+    color: gray;
     font-size: 15px;
 
     width: 100%;
@@ -82,11 +89,11 @@ export const Permission = styled.div`
 `
 
 export const NameItem = styled.div`
-    width: 45%;
-    height: 4vh;
+    width: 16.6%;
+    height: 100%;
     display:flex;
-    background-color: #779BE2;
-    margin-right:5px;
+    background-color: #FAFAFA;
+    /* margin-right:5px; */
     padding-left: 15px;
     align-items:center;
 
@@ -103,7 +110,7 @@ export const Button = styled.button`
     justify-content:center;
     align-items:center;
     display:flex;
-    margin-left: 5px;
+    margin-left: 10px;
     border: none;
     border-radius: 5px;
 

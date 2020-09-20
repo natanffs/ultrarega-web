@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
 
-import { Container,  ListPermissions, Labels, Label, Permission, NameItem,  Button, FormPermissions, Input } from './styles';
+import { Container, Wrapper, ListItemUtr, Labels, Label, ItemUtr, NameItem,  Button, FormItemUtr, Input } from './styles';
 
 
 interface modeUtrI{
@@ -37,30 +37,7 @@ const ModelUtr: React.FC = () => {
     }).catch((error)=>{console.log('Não foi possivel carregar os dados'+ error)})
   }
 
-  async function registerModelUtr(){
-    await api.post('modelUtrs',  {
-      
-      nome: itemUtr.nome,
-      tipo: itemUtr.tipo,
-      visivel: itemUtr.visivel,
-      fator_multiplicador: itemUtr.fator_multiplicador,
-      unidade_medida: itemUtr.unidade_medida
-    },{
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then((response)=>{
-        
-        setVisibleForm(false)
-        loadModelUtr().then(()=>alert(`sucesso: ${response.data.message}`))
-        
-
-    }).catch((error)=>{
-      alert(`erro: ${error.data.message}`)
-      
-    })
-  }
+  
 
   async function updateModelUtr() {
     await api.put('modelUtrs/' + itemUtr.codigo_item, {
@@ -87,55 +64,42 @@ const ModelUtr: React.FC = () => {
 
   return (
     <Container>
+
       <Header />
-      {visibleForm &&
-        <FormPermissions >
-          <Label >Nome</Label>
-          <Input value={itemUtr.nome} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setItemUtr({ ...itemUtr, nome: text.target.value })} />
-         
-          <Label >Tipo</Label>
-          <Input value={itemUtr.tipo} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setItemUtr({ ...itemUtr, tipo: text.target.value })} />
-         
-          <Label >Visivel</Label>
-          <Input value={itemUtr.visivel} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setItemUtr({ ...itemUtr, visivel: text.target.value })} />
-         
-          <Label >Fator multiplicador</Label>
-          <Input value={itemUtr.fator_multiplicador} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setItemUtr({ ...itemUtr, fator_multiplicador: text.target.value })} />
-         
-          <Label >Unidade de medida</Label>
-          <Input value={itemUtr.unidade_medida} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setItemUtr({ ...itemUtr, unidade_medida: text.target.value })} />
-         
-          <Button onClick={registerModelUtr}>Cadastrar</Button>
-          <br/>
-          <Button onClick={updateModelUtr}>Salvar</Button>
-        </FormPermissions>
-      }
-      <ListPermissions>
-        <Button onClick={() => setVisibleForm(true)}>Cadastrar novo campo</Button>
+      <Wrapper>
+      <ListItemUtr>
+        
         <br/>
         <Labels>
-          <Label>Codigo</Label>
           <Label>Nome</Label>
+          <Label>Tipo</Label>
+          <Label>Visivel</Label>
+          <Label>Fator multiplicador</Label>
+          <Label>Unidade de medida</Label>
 
         </Labels>
         {modelUtr.length > 0 && modelUtr.map((mu: modeUtrI) =>
 
-          <Permission key={mu.codigo_item} >
-            <NameItem>{mu.codigo_item}</NameItem>
+          <ItemUtr key={mu.codigo_item} >
             <NameItem>{mu.nome}</NameItem>
+            <NameItem>{mu.tipo}</NameItem>
+            <NameItem>{mu.visivel}</NameItem>
+            <NameItem>{mu.fator_multiplicador}</NameItem>
+            <NameItem>{mu.unidade_medida}</NameItem>
 
             <Button onClick={() => {
                
                 setItemUtr(mu)
                 setVisibleForm(true)
               }}>Editar</Button>
-          </Permission>
+          </ItemUtr>
          
         )
         }
 
 
-      </ListPermissions>
+      </ListItemUtr>
+      </Wrapper>
     </Container>
   );
 };

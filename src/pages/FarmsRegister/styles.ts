@@ -3,12 +3,21 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
-    padding-top: 6vh;
+    padding-top: 6%;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;    
 `;
+export const Wrapper = styled.div`
+    margin-top: 20px;
+    width: 80%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+  
+
+`
 
 
 export const FormFarm = styled.div`
@@ -23,7 +32,7 @@ export const FormFarm = styled.div`
 
 
 export const Input = styled.input`
-    width: 100%;
+    width: 30%;
     height: 33px;
     border-radius: 5px;
     border: 1px solid #DBD7D7;
@@ -54,18 +63,15 @@ export const Labels = styled.div`
 `
 
 export const Label = styled.div`
-    color: white;
-    font-size: 18px;
-    width:40%;
-    background-color: #5C84D2;
-    margin-right:5px;
-    margin-top:15px;
-    
+    width: 50%;
+    height: auto;
+    /* background-color: #818182; */
+    margin-bottom: 5px;
+    margin-top: 10px;
     display:flex;
     align-items:center;
-    padding-left: 15px;
-    justify-content: space-between;
-
+    color: black;
+    font-size: 18px;
     
 `
 
@@ -136,6 +142,8 @@ export const User = styled.div`
 export const TextInput =styled.label`
 color:gray;
 font-size:15px;
+padding-left: 10px;
+
 `
 export const CheckBox = styled.input`
     width:20px;

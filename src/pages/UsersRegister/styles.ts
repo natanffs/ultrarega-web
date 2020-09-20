@@ -24,23 +24,24 @@ export const ListUtr = styled.div`
     flex-direction:column;
 
 `
-// export const Labels = styled.div`
-//     width: 100%;
-//     height: 40px;
+export const Labels = styled.div`
+    width: 100%;
+    height: 40px;
 
-//     display:flex;
-//     flex-direction:row;
+    display:flex;
+    flex-direction:row;
     
 
-//     color: white;
-//     font-size: 18px;
+    color: white;
+    font-size: 18px;
+    background-color: #818182;
 
     
 
-// `
+`
 
 export const Label = styled.div`
-     width: 30%;
+     width: 50%;
     height: auto;
     /* background-color: #818182; */
     margin-bottom: 5px;
