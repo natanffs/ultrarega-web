@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Wrapper, WrapperMap,WrapperItem, NameItem, Button, ValueItem, Item } from './styles';
+import { Container, Wrapper, WrapperMap, WrapperItem, NameItem, Button, ValueItem, Item } from './styles';
 import Header from '../Header'
 import api from '../../services/api'
 import { connect, disconnect, subscribeToNewUsers, listenUpdates } from '../../services/socket.js'
@@ -29,8 +29,11 @@ const Utr = () => {
     }, [utr])
 
     function setupWebSocket() {
-        socket.on(`utr-update-${codigo_utr}`, (update) => {
-            setUtr(update)
+        socket.on(`utrs-updates`, (update) => {
+            let tmp
+            
+            console.log(update[codigo_utr - 1])
+            setUtr(update[codigo_utr - 1])
         })
     }
 
@@ -74,16 +77,17 @@ const Utr = () => {
                 <Map lat={-17.2938126} lng={-46.8558351} />
             </WrapperMap>
             <Wrapper>
-            <h1>Pivo</h1>
-            <br/>
+                <h1>Pivô</h1>
+                <br />
                 <Button onClick={() => { history.push(`/admin/cadastros/planorega/${codigo_utr}`) }}>Criar plano de rega</Button>
                 <WrapperItem>
-                
-                   { utr.map((u) => <Item key={u.codigo_item}>
+
+                    {utr.map((u) => <Item key={u.codigo_item}>
                         <NameItem>{u.nome}</NameItem>
-                        <ValueItem>{`${u.valor}${u.unidade_medida}`}</ValueItem>
+                        {u.nome === 'data_hora' ? <ValueItem>{Date()}</ValueItem> :
+                            <ValueItem>{`${u.valor} ${u.unidade_medida ? u.unidade_medida : ''}`}</ValueItem>}
                     </Item>)
-                }
+                    }
                 </WrapperItem>
             </Wrapper>
         </Container>
