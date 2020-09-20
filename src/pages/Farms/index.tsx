@@ -51,7 +51,20 @@ const Farms: React.FC = () => {
   }, [])
 
   async function loadFarms() {
+
+    localStorage.getItem('isAdmin')?
+    
     await api.get('farms', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      setFarms(response.data)
+    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+
+    :
+    await api.get('farms' + localStorage.getItem('id_user'), {
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

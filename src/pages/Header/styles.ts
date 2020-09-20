@@ -12,6 +12,7 @@ export const Container = styled.div`
     background-color: #5C84D2;
     align-items: center;
     justify-content:center;
+    z-index:5;
 
 `
 export const MenuDropdown = styled.button`

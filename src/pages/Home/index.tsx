@@ -38,7 +38,6 @@ interface utrI {
 
 const Home: React.FC = () => {
 
-
     const [utrs, setUtrs] = useState([])
 
 
@@ -49,14 +48,27 @@ const Home: React.FC = () => {
     }, [])
 
     async function loadUtrs() {
-        await api.get('utrs/', {
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            }
-        }).then(response => {
-            setUtrs(response.data)
-        }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+        localStorage.getItem('isAdmin') ?
+
+            await api.get('utrs/', {
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            }).then(response => {
+                setUtrs(response.data)
+            }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+
+            :
+
+            await api.get('utrs/' + localStorage.getItem('id_user'), {
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            }).then(response => {
+                setUtrs(response.data)
+            }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
     }
 
 

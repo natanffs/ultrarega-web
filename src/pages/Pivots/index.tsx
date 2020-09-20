@@ -60,7 +60,21 @@ const Pivots: React.FC = () => {
   }, [])
 
   async function loadPivots() {
+
+    localStorage.getItem('isAdmin')?
+
     await api.get('pivots', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      setPivots(response.data)
+    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+
+    :
+
+    await api.get('pivots'+localStorage.getItem('id_user'), {
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
