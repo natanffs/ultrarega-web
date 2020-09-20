@@ -38,14 +38,14 @@
             var view = new SceneView({
                 container: "viewDiv",
                 map: map,
-                center: [-46.8558351, -17.2938126],
+                center: [-47.036639, -17.342417],
                 zoom: 15
             });
 
             var point = {
                 type: "point",
-                longitude: -46.8558351,
-                latitude: -17.2938126
+                longitude: -47.036639,
+                latitude: -17.342417
             }
 
             var markerSymbol = {
@@ -65,7 +65,7 @@
                 symbol: markerSymbol
             });
 
-            view.graphics.addMany([pointGraphic]);
+            view.graphics.addMany([]);
 
             var basemapGallery = new BasemapGallery({
                 view: view

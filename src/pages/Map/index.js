@@ -62,9 +62,8 @@ const Map = ({ lat, lng }) => {
           };
 
         var lineAtt = {
-            Name: "Keystone Pipeline",
-            Owner: "TransCanada",
-            Length: "3,456 km"
+            Lâmina: "10mm",
+            Sentido: "Horário"
           };
 
         var polylineGraphic = new Graphic({
@@ -79,13 +78,10 @@ const Map = ({ lat, lng }) => {
                   type: "fields",
                   fieldInfos: [
                     {
-                      fieldName: "Name"
+                      fieldName: "Lâmina"
                     },
                     {
-                      fieldName: "Owner"
-                    },
-                    {
-                      fieldName: "Length"
+                      fieldName: "Sentido"
                     }
                   ]
                 }
@@ -93,8 +89,49 @@ const Map = ({ lat, lng }) => {
             }
           });
 
+          var polyline2 = {
+            type: "polyline", // autocasts as new Polyline()
+            paths: [
+              [${lng}, ${lat}],
+              [-46.851707,-17.295317],
+            ]
+          };
 
-        view.graphics.addMany([polylineGraphic]);
+        var lineSymbol2 = {
+            type: "simple-line", // autocasts as SimpleLineSymbol()
+            color: [106, 89, 231],
+            width: 2
+          };
+
+          lineSymbol2.style = "short-dot";
+
+        var polylineGraphic2 = new Graphic({
+            geometry: polyline2,
+            symbol: lineSymbol2,
+          });
+
+
+          var polyline3 = {
+            type: "polyline", // autocasts as new Polyline()
+            paths: [
+              [${lng}, ${lat}],
+              [-46.860134,-17.295994],
+            ]
+          };
+
+        var lineSymbol3 = {
+            type: "simple-line", // autocasts as SimpleLineSymbol()
+            color: [213, 189, 14],
+            width: 2
+          };
+
+        var polylineGraphic3 = new Graphic({
+            geometry: polyline3,
+            symbol: lineSymbol3,
+          });
+
+
+        view.graphics.addMany([polylineGraphic, polylineGraphic2, polylineGraphic3]);
 
         var basemapGallery = new BasemapGallery({
             view: view
