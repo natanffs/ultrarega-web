@@ -136,6 +136,35 @@ export const Button = styled.button`
     border-radius: 5px;
 
 `
+export const CheckBox = styled.input`
+    width:20px;
+    height:20px;
+`
+export const FormFarm = styled.div`
+    width:80vw;
+    height: 100%;
+    margin-top:20px;
+     
+    display:flex;
+    flex-direction:column;
+    align-content:center;
+`
+export const TextInput =styled.label`
+color:gray;
+font-size:15px;
+padding-left: 10px;
+
+`
+export const ListUsers = styled.div`
+    display:flex;
+    flex-direction: column;
+
+`
+export const User = styled.div`
+    margin: 5px 0 5px 15px;
+    display: flex;
+    flex-direction: row;
+`
 // export const Select = styled.select`
 //     width: 30%;
 //     height: 40px;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
-import { Container, ListUsers, Labels, Label, User, NameItem, Buttons, Button, } from './styles';
+import { Container, ListUsers, FormUtr, Input, WrapperCheckBox,Utrs, CheckBox, TextInput, Labels, Label, User, NameItem, Buttons, Button, } from './styles';
 import { Wrapper } from '../Home/styles';
 
 interface userI {
@@ -13,13 +13,15 @@ interface userI {
   telefone?: string,
   email?: string,
   codigo_permissoes?: [Number]
-
+  nivel_usuario?: string,
   
 }
 
 interface permissionI {
   grupo_permissao: string,
-  item_permissao: string
+  item_permissao: string,
+  codigo_permissao?: number,
+  nome?: string,
 }
 
 
@@ -95,31 +97,32 @@ const Users: React.FC = () => {
   //     })
   // }
 
-  // async function updateUser(){
-  //   await api.put('users/'+user.codigo_usuario,  {
-  //     nome_usuario: user.nome_usuario,
-  //     cpf: user.cpf,
-  //     numero_matricula: user.numero_matricula,
+  async function updateUser(){
+    await api.put('users/'+user.codigo_usuario,  {
+      nome_usuario: user.nome,
+      cpf: user.cpf,
+      numero_matricula: user.numero_matricula,
       
-  //     telefone: user.telefone,
-  //     email: user.email,
-  //     codigo_permissoes: selectedPermissions
-  //   },{
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  //     }
-  //   }).then((response)=>{
+      telefone: user.telefone,
+      email: user.email,
+      codigo_permissoes: selectedPermissions
+    },{
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then((response)=>{
         
-  //       setVisibleForm(false)
-  //       loadUsers()
-  //       alert(`sucesso: ${response.data.message}`)
+        setVisibleForm(false)
+        setUser({})
+        loadUsers()
+        alert(`sucesso: ${response.data.message}`)
 
-  //   }).catch((error)=>{
-  //     alert(`erro: ${error.data.message}`)
+    }).catch((error)=>{
+      alert(`erro: ${error.data.message}`)
       
-  //   })
-  // }
+    })
+  }
 
   return (
     <Container>
@@ -140,7 +143,8 @@ const Users: React.FC = () => {
 
             <Buttons>
             {findPermission("USUU") && <Button onClick={() => {
-               
+               setVisibleForm(true)
+               setUser(u)
               }}>Editar</Button>}
               {/* <Button onClick={()=>{deleteUser(u)}}>Excluir</Button> */}
 
@@ -149,7 +153,51 @@ const Users: React.FC = () => {
         )
         }
 
+        {visibleForm &&
+          <FormUtr >
+          <Label >Nome</Label>
+          <Input value={user.nome} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, nome: text.target.value })} />
+          <br />
+          <Label >CPF</Label>
+          <Input value={user.cpf} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, cpf: text.target.value })} />
+          <br />
+          <Label >Matrícula</Label>
+          <Input value={user.numero_matricula} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, numero_matricula: Number(text.target.value) })} />
+          <br />
+          <Label >Telefone</Label>
+          <Input value={user.telefone} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, telefone: text.target.value })} />
+          <br />
+          <Label >Email</Label>
+          <Input value={user.email} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, email: text.target.value })} />
+          <br />
+          <Label >Descrição do usuário (Ex: Fazendeiro, pivozeiro)</Label>
+          <Input value={user.nivel_usuario} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, nivel_usuario: text.target.value })} />
+          <br />
+          <Label >Senha</Label>
+          <Input value={user.senha} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, senha: text.target.value })} />
+          <br />
 
+          <Label>Vincular Permissoes</Label>
+          {permissions.length > 0 && permissions.map((p: permissionI) =>
+            <Utrs key={p.codigo_permissao}>
+              <WrapperCheckBox>
+                <CheckBox type="checkbox" value={p.codigo_permissao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
+                  if (text.target.checked) {
+                    setSelectedPermissions([...selectedPermissions, Number(text.target.value)])
+                  } else {
+                    setSelectedPermissions(selectedPermissions.filter(su => su !== Number(text.target.value)))
+                  }
+                }} />
+                <TextInput>{p.nome}</TextInput>
+              </WrapperCheckBox>
+            </Utrs>
+
+          )}
+          <br/>
+          <Button onClick={updateUser}>Salvar</Button>
+          <br/>
+        </FormUtr>
+        }
       </ListUsers>
       </Wrapper>
     </Container>

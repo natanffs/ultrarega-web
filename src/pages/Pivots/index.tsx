@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
-import { Container, ListPivots, Labels, Label, Pivot, NameItem, Buttons, Button } from './styles';
+import { Container,FormPivot, Input, TextInput, Select, Option, ListPivots, Labels, Label, Pivot, NameItem, Buttons, Button } from './styles';
 
 interface pivotI {
   codigo_pivo?: number,
@@ -20,12 +20,12 @@ interface pivotI {
   religamento_energia?: string,
   religamento_pressao?: string,
   codigo_fazenda?: number,
-  nome_fazenda?:string
+  nome_fazenda?: string
 
 }
 
 
-interface farmI{
+interface farmI {
   codigo_fazenda?: number,
   nome_fazenda?: string,
   cnpj?: string,
@@ -56,41 +56,41 @@ const Pivots: React.FC = () => {
   useEffect(() => {
     const temp = localStorage.getItem('permissions_user')
     temp &&
-    setPermissions(JSON.parse(temp))
+      setPermissions(JSON.parse(temp))
   }, [])
 
   async function loadPivots() {
 
-    localStorage.getItem('isAdmin')?
+    localStorage.getItem('isAdmin') ?
 
-    await api.get('pivots', {
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then(response => {
-      setPivots(response.data)
-    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+      await api.get('pivots', {
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      }).then(response => {
+        setPivots(response.data)
+      }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
 
-    :
+      :
 
-    await api.get('pivots'+localStorage.getItem('id_user'), {
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then(response => {
-      setPivots(response.data)
-    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+      await api.get('pivots' + localStorage.getItem('id_user'), {
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      }).then(response => {
+        setPivots(response.data)
+      }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
 
-  function findPermission(permission:string){
+  function findPermission(permission: string) {
     let find = false
-      permissions.map((p:permissionI)=>{
-          if(p.item_permissao === permission) 
-         find = true
-      })
-      return find
+    permissions.map((p: permissionI) => {
+      if (p.item_permissao === permission)
+        find = true
+    })
+    return find
   }
 
   // async function deletePivot({ codigo_pivo }: pivotI) {
@@ -110,60 +110,60 @@ const Pivots: React.FC = () => {
   //   })
   // }
 
-  // async function updatePivot() {
-  //   await api.put('pivots/' + pivot.codigo_pivo, {
+  async function updatePivot() {
+    await api.put('pivots/' + pivot.codigo_pivo, {
 
-  //     codigo_pivo: pivot.codigo_pivo,
-  //     nome_pivo: pivot.nome_pivo,
-  //     descricao: pivot.descricao,
-  //     tipo_pivo: pivot.tipo_pivo,
-  //     raio: pivot.raio,
-  //     velocidade_maxima: pivot.velocidade_maxima,
-  //     area_irrigada: pivot.area_irrigada,
-  //     lamina: pivot.lamina,
-  //     vazao_maxima: pivot.vazao_maxima,
-  //     altura_centro: pivot.altura_centro,
-  //     latitude_centro: pivot.latitude_centro,
-  //     longitude_centro: pivot.longitude_centro,
-  //     reversao: pivot.reversao,
-  //     religamento_energia: pivot.religamento_energia,
-  //     religamento_pressao: pivot.religamento_pressao,
-  //     codigo_fazenda: pivot.codigo_fazenda
+      codigo_pivo: pivot.codigo_pivo,
+      nome_pivo: pivot.nome_pivo,
+      descricao: pivot.descricao,
+      tipo_pivo: pivot.tipo_pivo,
+      raio: pivot.raio,
+      velocidade_maxima: pivot.velocidade_maxima,
+      area_irrigada: pivot.area_irrigada,
+      lamina: pivot.lamina,
+      vazao_maxima: pivot.vazao_maxima,
+      altura_centro: pivot.altura_centro,
+      latitude_centro: pivot.latitude_centro,
+      longitude_centro: pivot.longitude_centro,
+      reversao: pivot.reversao,
+      religamento_energia: pivot.religamento_energia,
+      religamento_pressao: pivot.religamento_pressao,
+      codigo_fazenda: pivot.codigo_fazenda
 
-  //   }, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  //     }
-  //   }).then((response) => {
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then((response) => {
 
-  //     setVisibleForm(false)
-  //     loadPivots()
-  //     alert(`sucesso: ${response.data.message}`)
+      setVisibleForm(false)
+      loadPivots()
+      alert(`sucesso: ${response.data.message}`)
 
-  //   }).catch((error) => {
-  //     alert(`erro: ${error.data.message}`)
+    }).catch((error) => {
+      alert(`erro: ${error.data.message}`)
 
-  //   })
-  // }
+    })
+  }
 
-  // async function loadFarms() {
-  //   await api.get('farms', {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  //     }
-  //   }).then(response => {
-  //     setFarms(response.data)
-  //   }).catch((error)=>{console.log('Não foi possivel carregar os dados'+ error)})
-  // }
+  async function loadFarms() {
+    await api.get('farms', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      setFarms(response.data)
+    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+  }
 
   return (
     <Container>
       <Header />
-      
+
       <ListPivots>
-                <Labels>
+        <Labels>
           <Label>Pivô</Label>
           <Label>Fazenda</Label>
 
@@ -175,14 +175,70 @@ const Pivots: React.FC = () => {
             <NameItem>{p.nome_fazenda}</NameItem>
 
             <Buttons>
-              { findPermission("PIVU") &&<Button onClick={() => {
-                
+              {findPermission("PIVU") && <Button onClick={() => {
+                setVisibleForm(true)
+                setPivot(p)
+                loadFarms()
               }}>Editar</Button>}
               {/* <Button onClick={() => { deletePivot(p) }}>Excluir</Button> */}
 
             </Buttons>
           </Pivot>
         )
+        }
+
+        {visibleForm &&
+
+          <FormPivot >
+            <TextInput >Nome</TextInput>
+            <Input value={pivot.nome_pivo} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, nome_pivo: text.target.value })} />
+            <br />
+            <TextInput >Descricão</TextInput>
+            <Input value={pivot.descricao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, descricao: text.target.value })} />
+            <br />
+            <TextInput>Velocidade Maxima</TextInput>
+            <Input value={pivot.velocidade_maxima} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, velocidade_maxima: Number(text.target.value) })} />
+            <br />
+            <TextInput>Area irrigada</TextInput>
+            <Input value={pivot.area_irrigada} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, area_irrigada: Number(text.target.value) })} />
+            <br />
+            <TextInput>Lamina</TextInput>
+            <Input value={pivot.lamina} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, lamina: text.target.value })} />
+            <br />
+            <TextInput>Vazão maxima</TextInput>
+            <Input value={pivot.vazao_maxima} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, vazao_maxima: text.target.value })} />
+            <br />
+            <TextInput>Altura do centro</TextInput>
+            <Input value={pivot.altura_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, altura_centro: Number(text.target.value) })} />
+            <br />
+            <TextInput>Latitude do centro</TextInput>
+            <Input value={pivot.latitude_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, latitude_centro: Number(text.target.value) })} />
+            <br />
+            <TextInput>Longitude do centro</TextInput>
+            <Input value={pivot.longitude_centro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, longitude_centro: Number(text.target.value) })} />
+            <br />
+            <TextInput>Reversão</TextInput>
+            <Input value={pivot.reversao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, reversao: text.target.value })} />
+            <br />
+            <TextInput>Religamento de energia</TextInput>
+            <Input value={pivot.religamento_energia} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_energia: text.target.value })} />
+            <br />
+            <TextInput>Religamento por pressao</TextInput>
+            <Input value={pivot.religamento_pressao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPivot({ ...pivot, religamento_pressao: text.target.value })} />
+            <br />
+            <TextInput>Vincula fazenda</TextInput>
+            <Select onChange={(text) => setPivot({ ...pivot, codigo_fazenda: Number(text.target.value) })}>
+              {farms.length > 0 && farms.map((f: farmI) =>
+                <Option key={f.codigo_fazenda} value={f.codigo_fazenda}>{f.nome_fazenda}</Option>
+              )}
+
+
+            </Select>
+            <br />
+            <Button onClick={updatePivot}>Salvar</Button>
+            <br />
+
+          </FormPivot>
         }
 
 
