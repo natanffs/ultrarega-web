@@ -146,8 +146,8 @@ const Map = ({ lat, lng }) => {
     }, [])
 
     return (
-        <div style={{ width: "100vw", height: "100vh" }}>
-            <div style={{ padding: 0, margin: 0, width: '100%', height: '70%' }} id="viewDiv"></div>
+        <div style={{ width: "100vw", height: "60vh" }}>
+            <div style={{ padding: 0, margin: 0, width: '100%', height: '100%' }} id="viewDiv"></div>
             {/* <div style={{ padding: 0, margin: 0, marginTop: '6vh', height: '70%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 0, left: 0, zIndex: 3 }}>
                 <div style={{ padding: 0, margin: 0, height: 220, width: 220, backgroundColor: 'blue', borderRadius: '50%' }} />
             </div> */}

@@ -35,6 +35,11 @@ interface farmI{
   longitude?: number
 
 }
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
+}
+
 
 const Pivots: React.FC = () => {
 
@@ -42,11 +47,16 @@ const Pivots: React.FC = () => {
   const [pivot, setPivot] = useState<pivotI>({})
   const [pivots, setPivots] = useState([])
   const [visibleForm, setVisibleForm] = useState(false)
-
+  const [permissions, setPermissions] = useState<permissionI[]>([])
 
 
   useEffect(() => {
     loadPivots()
+  }, [])
+  useEffect(() => {
+    const temp = localStorage.getItem('permissions_user')
+    temp &&
+    setPermissions(JSON.parse(temp))
   }, [])
 
   async function loadPivots() {
@@ -60,7 +70,14 @@ const Pivots: React.FC = () => {
     }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
 
-  
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
+  }
 
   // async function deletePivot({ codigo_pivo }: pivotI) {
   //   await api.delete('pivots/' + codigo_pivo, {
@@ -144,9 +161,9 @@ const Pivots: React.FC = () => {
             <NameItem>{p.nome_fazenda}</NameItem>
 
             <Buttons>
-              <Button onClick={() => {
+              { findPermission("PIVU") &&<Button onClick={() => {
                 
-              }}>Editar</Button>
+              }}>Editar</Button>}
               {/* <Button onClick={() => { deletePivot(p) }}>Excluir</Button> */}
 
             </Buttons>

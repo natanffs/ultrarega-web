@@ -17,10 +17,9 @@ interface userI {
   
 }
 
-interface permissionI{
-  codigo_permissao?: number,
-  nome?: string,
- 
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
 }
 
 
@@ -38,6 +37,12 @@ const Users: React.FC = () => {
     loadUsers()
   }, [])
 
+  useEffect(() => {
+    const temp = localStorage.getItem('permissions_user')
+    temp &&
+    setPermissions(JSON.parse(temp))
+  }, [])
+
   async function loadUsers() {
     await api.get('users', {
       headers: {
@@ -49,6 +54,14 @@ const Users: React.FC = () => {
     }).catch((error)=>{console.log('Não foi possivel carregar os dados'+ error)})
   }
 
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
+  }
   
 
   // async function deleteUser({codigo_usuario}: userI){
@@ -112,8 +125,9 @@ const Users: React.FC = () => {
             <NameItem>{u.cpf}</NameItem>
 
             <Buttons>
-              <Button onClick={()=>{setUser(u) 
-                                    setVisibleForm(true)}}>Editar</Button>
+            {findPermission("USUU") && <Button onClick={() => {
+               
+              }}>Editar</Button>}
               {/* <Button onClick={()=>{deleteUser(u)}}>Excluir</Button> */}
 
             </Buttons>

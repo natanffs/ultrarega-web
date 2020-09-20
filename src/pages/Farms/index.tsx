@@ -27,6 +27,10 @@ interface userI {
 
 
 }
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
+}
 
 const Farms: React.FC = () => {
 
@@ -35,9 +39,15 @@ const Farms: React.FC = () => {
   const [farm, setFarm] = useState<farmI>({})
   const [farms, setFarms] = useState([])
   const [visibleForm, setVisibleForm] = useState(false)
+  const [permissions, setPermissions] = useState<permissionI[]>([])
 
   useEffect(() => {
     loadFarms()
+  }, [])
+  useEffect(() => {
+    const temp = localStorage.getItem('permissions_user')
+    temp &&
+    setPermissions(JSON.parse(temp))
   }, [])
 
   async function loadFarms() {
@@ -51,6 +61,14 @@ const Farms: React.FC = () => {
     }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
 
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
+  }
   
 
   // async function deleteFarm({ codigo_fazenda }: farmI) {
@@ -117,9 +135,9 @@ const Farms: React.FC = () => {
             <NameItem>{f.localizacao_fazenda}</NameItem>
 
             <Buttons>
-              <Button onClick={() => {
+              {findPermission("FAZU") && <Button onClick={() => {
                
-              }}>Editar</Button>
+              }}>Editar</Button>}
               {/* <Button onClick={() => { deleteFarm(f) }}>Excluir</Button> */}
 
             </Buttons>

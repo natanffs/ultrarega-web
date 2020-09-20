@@ -22,12 +22,24 @@ interface tractorI {
   desbloqueio_diferencial?: string
 }
 
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
+}
+
 const Tractor: React.FC = () => {
 
   const [tractors, setTractors] = useState([])
+  const [permissions, setPermissions] = useState<permissionI[]>([])
 
   useEffect(() => {
     loadTractors()
+  }, [])
+
+  useEffect(() => {
+    const temp = localStorage.getItem('permissions_user')
+    temp &&
+    setPermissions(JSON.parse(temp))
   }, [])
 
   async function loadTractors() {
@@ -39,6 +51,15 @@ const Tractor: React.FC = () => {
     }).then(response => {
       setTractors(response.data)
     }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+  }
+
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
   }
 
   return (
@@ -60,9 +81,9 @@ const Tractor: React.FC = () => {
             <NameItem>{t.combustivel}</NameItem>
 
             <Buttons>
-              <Button onClick={() => {
-                
-              }}>Editar</Button>
+            {findPermission("MAQU") && <Button onClick={() => {
+               
+              }}>Editar</Button>}
               {/* <Button onClick={() => { deleteTracto(p) }}>Excluir</Button> */}
 
             </Buttons>

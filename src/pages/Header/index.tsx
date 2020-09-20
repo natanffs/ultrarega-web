@@ -56,7 +56,7 @@ const Header: React.FC = () => {
             {findPermission("MAQC") && <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem>}
             {findPermission("UTRC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/utrs'>UTRs</MenuItem>}
             
-            { localStorage.getItem('isAdmin') === "1" && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/modeloutr'>Modelo UTR</MenuItem>}
+            { localStorage.getItem('isAdmin') === "1" && findPermission("MODUTRC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/modeloutr'>Modelo UTR</MenuItem>}
           
           </Dropdown>
         </MenuDropdown>
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             {findPermission("FAZR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/fazendas'>Fazendas</MenuItem>}
             {/* <MenuItem  onClick={()=>{setVisibleConfiguracao(false)}} to= ''>Visualizações</MenuItem> */}
             {findPermission("PIVR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/pivos'>Pivos</MenuItem>}
-            {findPermission("MODUTRR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/modeloutr'>Modelo UTR</MenuItem>}
+            {localStorage.getItem('isAdmin') === "1" &&findPermission("MODUTRR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/modeloutr'>Modelo UTR</MenuItem>}
             {findPermission("MAQR") && <MenuItem onClick={()=>{setVisibleGestao(false)}} to= '/tratores'>Tratores</MenuItem>}
           </Dropdown>
         </MenuDropdown>

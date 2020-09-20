@@ -87,11 +87,6 @@ const ModelUtr: React.FC = () => {
             <NameItem>{mu.fator_multiplicador}</NameItem>
             <NameItem>{mu.unidade_medida}</NameItem>
 
-            <Button onClick={() => {
-               
-                setItemUtr(mu)
-                setVisibleForm(true)
-              }}>Editar</Button>
           </ItemUtr>
          
         )

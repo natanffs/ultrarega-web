@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 width: 100%;
-    padding-top: 6vh;
+    padding-top: 5%;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -10,11 +10,28 @@ width: 100%;
 `;
 
 export const Wrapper = styled.div`
-    margin-top: 20px;
+    margin-top: 50px;
     width: 80%;
-    height: 100%;
+    height: 60%;
     display:flex;
     flex-direction:column;
+  
+
+`
+export const WrapperMap = styled.div`
+    
+    width: 100%;
+    height: 40%;
+    display:flex;
+  
+
+`
+export const WrapperItem = styled.div`
+    
+    
+    display:flex;
+    flex-direction:row;
+    
   
 
 `
@@ -22,26 +39,43 @@ export const Wrapper = styled.div`
 
 
 export const NameItem = styled.div`
-    width: 50%;
-    height: 100%;
-    display:flex;
-    background-color: #FAFAFA;
+    
+    
     /* margin-right:5px; */
     
     padding: 5px;
-    align-items:center;
+    /* align-items:center; */
+    align-self:center;
+    color:#707070;
+    font-size:15px;
    
 
    
 `
 export const ValueItem = styled.div`
+ color:#3a3a3a;
+    font-size:20px;
     
 `
 export const Item = styled.div`
+
+    display:flex; background-color: #FBFBFB; 
+   
     width: auto;
-    height: 40px;
+    max-width: 200px;
+    height: auto;
     padding: 10px;
-    border: 0px 1px 0 0 solid gray;
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    align-content:center;
+    justify-content:center;
+    margin-top: 20px;
+    border-right-width: 1px ;
+    border-right-color: #707070 ;
+    border-right-style: solid;
+   
 `
 
 export const Label = styled.div`
