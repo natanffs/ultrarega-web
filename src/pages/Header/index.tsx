@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
 
+
 import { Container, MenuItem, Button, Menu, MenuDropdown, Dropdown } from './styles';
+
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
+}
 
 const Header: React.FC = () => {
 
   const history = useHistory();
   const [visibleCadastrar, setVisibleCadastrar] = useState(false)
-  const [visiblePerfil, setVisiblePerfil] = useState(false)
-  const [visibleConfiguracao, setVisibleConfiguracao] = useState(false)
-  const [visibleEquipamentos, setVisibleEquipamentos] = useState(false)
+  const [permissions, setPermissions] = useState<permissionI[]>([])
+  const [visibleGestao, setVisibleGestao] = useState(false)
+
+  useEffect(() => {
+    const temp = localStorage.getItem('permissions_user')
+    temp &&
+    setPermissions(JSON.parse(temp))
+  }, [])
 
   function onSubmit() {
     localStorage.removeItem('token')
     history.push('/login')
   }
+
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
+  }
   return (
     <Container>
-
-
 
 
       <Menu>
@@ -29,38 +47,37 @@ const Header: React.FC = () => {
 
         <MenuDropdown onClick={() => {
           visibleCadastrar ? setVisibleCadastrar(false) : setVisibleCadastrar(true)
-          setVisibleConfiguracao(false)
-          setVisibleEquipamentos(false)
-          setVisiblePerfil(false)
+          setVisibleGestao(false)
         }} className="dropdown">Cadastros
           <Dropdown style={{ display: visibleCadastrar ? 'flex' : 'none' }}>
-            <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/usuarios'>Usuário</MenuItem>
-            <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/pivos'>Pivos</MenuItem>
-            <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/fazendas'>Fazenda</MenuItem>
-            <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem>
-            <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/utrs'>UTRs</MenuItem>
-            <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/modeloutr'>Modelo UTR</MenuItem>
+            {findPermission("USUC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/usuarios'>Usuário</MenuItem>}
+            {findPermission("PIVC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/pivos'>Pivos</MenuItem>}
+            {findPermission("FAZC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/fazendas'>Fazenda</MenuItem>}
+            {findPermission("MAQC") && <MenuItem  onClick={()=>{setVisibleCadastrar(false)}} to= '/cadastros/tratores'>Trator</MenuItem>}
+            {findPermission("UTRC") && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/utrs'>UTRs</MenuItem>}
+            
+            { localStorage.getItem('isAdmin') === "1" && <MenuItem onClick={() => { setVisibleCadastrar(false) }} to='/cadastros/modeloutr'>Modelo UTR</MenuItem>}
+          
           </Dropdown>
         </MenuDropdown>
 
         <MenuDropdown onClick={() => {
-          visiblePerfil ? setVisiblePerfil(false) : setVisiblePerfil(true)
+          visibleGestao ? setVisibleGestao(false) : setVisibleGestao(true)
           setVisibleCadastrar(false)
-          setVisibleEquipamentos(false)
-          setVisibleConfiguracao(false)
         }} className="dropdown">Gestão
-          <Dropdown style={{ display: visiblePerfil ? 'flex' : 'none' }}>
-            <MenuItem onClick={() => { setVisiblePerfil(false) }} to='/usuarios'>Usuarios</MenuItem>
-            <MenuItem onClick={() => { setVisiblePerfil(false) }} to='/fazendas'>Fazendas</MenuItem>
+          <Dropdown style={{ display: visibleGestao ? 'flex' : 'none' }}>
+            {findPermission("USUR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/usuarios'>Usuarios</MenuItem>}
+            {findPermission("FAZR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/fazendas'>Fazendas</MenuItem>}
             {/* <MenuItem  onClick={()=>{setVisibleConfiguracao(false)}} to= ''>Visualizações</MenuItem> */}
-            <MenuItem onClick={() => { setVisibleEquipamentos(false) }} to='/pivos'>Pivos</MenuItem>
-            <MenuItem onClick={() => { setVisibleEquipamentos(false) }} to='/modeloutr'>Modelo UTR</MenuItem>
-            <MenuItem onClick={()=>{setVisibleEquipamentos(false)}} to= '/tratores'>Tratores</MenuItem>
+            {findPermission("PIVR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/pivos'>Pivos</MenuItem>}
+            {findPermission("MODUTRR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/modeloutr'>Modelo UTR</MenuItem>}
+            {findPermission("MAQR") && <MenuItem onClick={()=>{setVisibleGestao(false)}} to= '/tratores'>Tratores</MenuItem>}
           </Dropdown>
         </MenuDropdown>
 
 
-        <MenuItem onClick={() => { setVisibleConfiguracao(false) }} to='/usuario'>Perfil</MenuItem>
+        <MenuItem onClick={() => { setVisibleGestao(false)
+           setVisibleCadastrar(false)}} to='/usuario'>Perfil</MenuItem>
 
 
 
@@ -75,4 +92,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default Header
