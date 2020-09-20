@@ -44,7 +44,21 @@ const Users: React.FC = () => {
   }, [])
 
   async function loadUsers() {
+
+    localStorage.getItem('isAdmin')?
+
     await api.get('users', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      setUsers(response.data)
+    }).catch((error)=>{console.log('Não foi possivel carregar os dados'+ error)})
+
+    :
+
+    await api.get('users'+localStorage.getItem('id_user'), {
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -43,7 +43,21 @@ const Tractor: React.FC = () => {
   }, [])
 
   async function loadTractors() {
+
+    localStorage.getItem('isAdmin')?
+
     await api.get('tractors', {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      setTractors(response.data)
+    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+
+    :
+
+    await api.get('tractors'+localStorage.getItem('id_user'), {
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
