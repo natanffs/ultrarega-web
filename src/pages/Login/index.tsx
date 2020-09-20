@@ -28,8 +28,8 @@ const Login: React.FC = () => {
     }
     ).then(response => {
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('id_user', response.data.user)
-      localStorage.setItem('permissions_user', response.data.permissions)
+      localStorage.setItem('id_user', JSON.stringify(response.data.user))
+      localStorage.setItem('permissions_user', JSON.stringify( response.data.permissions))
 
       const permissions = response.data.permissions
 

@@ -9,6 +9,15 @@ export const Container = styled.div`
     flex-direction:column;    
 `;
 
+export const Wrapper = styled.div`
+    margin-top: 20px;
+    width: 80%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+  
+
+`
 
 export const FormPivot = styled.div`
     width:80vw;
@@ -127,16 +136,16 @@ export const Button = styled.button`
     border-radius: 5px;
 
 `
-export const Select = styled.select`
-    width: 30%;
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #DBD7D7;
-    padding: 2px 7px;
-    font-size:15px;
-`
+// export const Select = styled.select`
+//     width: 30%;
+//     height: 40px;
+//     border-radius: 5px;
+//     border: 1px solid #DBD7D7;
+//     padding: 2px 7px;
+//     font-size:15px;
+// `
 
-export const Option = styled.option`
+// export const Option = styled.option`
 
-`
+// `
 

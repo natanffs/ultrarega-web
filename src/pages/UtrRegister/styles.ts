@@ -144,7 +144,12 @@ export const Select = styled.select`
 `
 
 export const Option = styled.option`
-
+width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #DBD7D7;
+    padding: 2px 7px;
+    font-size:15px;
 `
 export const WrapperCheckBox = styled.div`
     display:flex;

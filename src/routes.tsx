@@ -42,7 +42,7 @@ const Routes = () => {
             <Route exact component={Home} path="/home"/>
            
             <Route exact component={Users} path="/usuarios"/>
-            <Route exact component={User} path="/usuarios/:id"/>
+            <Route exact component={User} path="/usuario"/>
             <Route exact component={Utr} path="/utrs/:id"/>
             <Route exact component={Farms} path="/fazendas"/>
             <Route exact component={Tractor} path="/tratores"/>
@@ -53,6 +53,9 @@ const Routes = () => {
             <Route exact component={UtrRegister} path="/cadastros/utrs"/>
             <Route exact component={UsersRegister} path="/cadastros/usuarios"/>
             <Route exact component={PlanoRega} path="/cadastros/planorega"/>
+            <Route exact component={ModelUtrRegister} path="/cadastros/modeloutr"/>
+            <Route exact component={ModelUtr} path="/modeloutr"/>
+
 
            
             {/* <Route exact component={Permissions} path="/permissoes"/> */}
@@ -71,7 +74,7 @@ const Routes = () => {
             <Route exact component={PivotsRegister} path="/admin/cadastros/pivos"/>
             <Route exact component={UsersRegister} path="/admin/cadastros/usuarios"/>
             <Route exact component={UtrRegister} path="/admin/cadastros/utrs"/>
-            <Route exact component={ModelUtrRegister} path="/admin/cadastros/modeloutr"/>
+            <Route exact component={ModelUtrRegister} path="/cadastros/modeloutr"/>
             <Route exact component={PlanoRega} path="/admin/cadastros/planorega/:id"/>
             
         </Switch>

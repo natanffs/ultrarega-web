@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
 
-import { Container, ListFarms, Labels, Label, Farm, NameItem, Buttons, Button,  } from './styles';
+import { Container,Wrapper,ListFarms, Farm,Label, Labels, NameItem, Buttons, Button,  } from './styles';
 
 
 interface farmI {
@@ -53,69 +53,58 @@ const Farms: React.FC = () => {
 
   
 
-  async function deleteFarm({ codigo_fazenda }: farmI) {
-    await api.delete('farms/' + codigo_fazenda, {
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then((response) => {
+  // async function deleteFarm({ codigo_fazenda }: farmI) {
+  //   await api.delete('farms/' + codigo_fazenda, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  //     }
+  //   }).then((response) => {
 
-      loadFarms()
-      alert(`sucesso: ${response.data.message}`)
+  //     loadFarms()
+  //     alert(`sucesso: ${response.data.message}`)
 
-    }).catch((error) => {
-      alert(`erro: ${error.data.message}`)
+  //   }).catch((error) => {
+  //     alert(`erro: ${error.data.message}`)
 
-    })
-  }
+  //   })
+  // }
 
   
-  async function updateFarm() {
-    await api.put('farms/' + farm.codigo_fazenda, {
-      nome_fazenda: farm.nome_fazenda,
-      cnpj: farm.cnpj,
-      inscricao_produtor: farm.inscricao_produtor,
-      localizacao_fazenda: farm.localizacao_fazenda,
-      latitude: farm.latitude,
-      longitude: farm.longitude,
-      codigo_usuarios: selectedUsers
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then((response) => {
-      setVisibleForm(false)
-      loadFarms()
-      alert(`sucesso: ${response.data.message}`)
+  // async function updateFarm() {
+  //   await api.put('farms/' + farm.codigo_fazenda, {
+  //     nome_fazenda: farm.nome_fazenda,
+  //     cnpj: farm.cnpj,
+  //     inscricao_produtor: farm.inscricao_produtor,
+  //     localizacao_fazenda: farm.localizacao_fazenda,
+  //     latitude: farm.latitude,
+  //     longitude: farm.longitude,
+  //     codigo_usuarios: selectedUsers
+  //   }, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  //     }
+  //   }).then((response) => {
+  //     setVisibleForm(false)
+  //     loadFarms()
+  //     alert(`sucesso: ${response.data.message}`)
 
-    }).catch((error) => {
-      alert(`erro: ${error.data.message}`)
+  //   }).catch((error) => {
+  //     alert(`erro: ${error.data.message}`)
 
-    })
-  }
+  //   })
+  // }
 
-  async function loadUsers() {
-    await api.get('users', {
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    }).then(response => {
-      setUsers(response.data)
-    }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
-  }
+  
 
   return (
     <Container>
       <Header />
-      
+      <Wrapper>
+        <h1>Fazendas</h1>
       <ListFarms>
-        <Button onClick={() => {
-          if (users.length <= 0) { loadUsers() }
-          setVisibleForm(true)
-        }}>Cadastrar nova fazenda</Button>
+        
         <Labels>
           <Label>Fazenda</Label>
           <Label>Referencia de localização</Label>
@@ -129,11 +118,9 @@ const Farms: React.FC = () => {
 
             <Buttons>
               <Button onClick={() => {
-                if (users.length <= 0) { loadUsers() }
-                setFarm(f)
-                setVisibleForm(true)
+               
               }}>Editar</Button>
-              <Button onClick={() => { deleteFarm(f) }}>Excluir</Button>
+              {/* <Button onClick={() => { deleteFarm(f) }}>Excluir</Button> */}
 
             </Buttons>
           </Farm>
@@ -142,6 +129,7 @@ const Farms: React.FC = () => {
 
 
       </ListFarms>
+      </Wrapper>
     </Container>
   );
 };

@@ -9,16 +9,17 @@ export const Container = styled.div`
     flex-direction:column;    
 `;
 
-
-export const FormUser = styled.div`
-    width:80vw;
+export const Wrapper = styled.div`
+    margin-top: 20px;
+    width: 80%;
     height: 100%;
-    margin-top:20px;
-     
     display:flex;
     flex-direction:column;
-    align-content:center;
+  
+
 `
+
+
 
 
 export const Input = styled.input`
@@ -42,12 +43,12 @@ export const ListUsers = styled.div`
 
 `
 export const Labels = styled.div`
-    width: 100%;
+    width: 80%;
     height: 4.5vh;
     margin-top:10px;
     display:flex;
     flex-direction:row;
-    
+    background-color: #818182;
 
    
 
@@ -56,25 +57,35 @@ export const Labels = styled.div`
 `
 
 export const Label = styled.div`
+     width: 50%;
+    height: auto;
+    /* background-color: #818182; */
+    margin-bottom: 5px;
+    margin-top: 10px;
+    display:flex;
+    padding-left:20px;
+    align-items:center;
     color: white;
     font-size: 18px;
-    width:40%;
-    background-color: #5C84D2;
-    margin-right:5px;
+`
+export const LabelInput = styled.div`
+     width: 30%;
+    height: auto;
+    /* background-color: #818182; */
+    margin-bottom: 5px;
+    margin-top: 10px;
     display:flex;
     align-items:center;
-    padding-left: 15px;
-    justify-content: space-between;
-
-    
+    color: black;
+    font-size: 18px;
 `
 
 export const User = styled.div`
-    color: white;
+     color: gray;
     font-size: 15px;
 
     width: 100%;
-    height: 4vh;
+    height: 40px;
     display:flex;
     flex-direction:row;
     margin-top:5px;
@@ -82,11 +93,11 @@ export const User = styled.div`
 `
 
 export const NameItem = styled.div`
-    width: 40%;
-    height: 4vh;
+   width: 40%;
+    height: 100%;
     display:flex;
-    background-color: #779BE2;
-    margin-right:5px;
+    background-color: #FAFAFA;
+    /* margin-right:5px; */
     padding-left: 15px;
     align-items:center;
 
@@ -116,11 +127,16 @@ export const Button = styled.button`
     border-radius: 5px;
 
 `
-export const TextInput =styled.label`
-color:gray;
-font-size:15px;
-`
-export const CheckBox = styled.input`
-    width:20px;
-    height:20px;
-`
+// export const Select = styled.select`
+//     width: 30%;
+//     height: 40px;
+//     border-radius: 5px;
+//     border: 1px solid #DBD7D7;
+//     padding: 2px 7px;
+//     font-size:15px;
+// `
+
+// export const Option = styled.option`
+
+// `
+
