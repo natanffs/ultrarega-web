@@ -39,7 +39,7 @@ interface utrI {
 const Home: React.FC = () => {
 
     const [utrs, setUtrs] = useState([])
-
+    const [isAdmin, setIsAdmin] = useState('')
 
     const history = useHistory()
 
@@ -47,8 +47,31 @@ const Home: React.FC = () => {
         loadUtrs()
     }, [])
 
+    async function loadAllUtrs() {
+        await api.get('utrs/', {
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        }).then(response => {
+            setUtrs(response.data)
+            console.log(response.data)
+        }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+    }
+
+    async function loadUserUtrs() {
+        await api.get('utrsbyUser/' + localStorage.getItem('id_user'), {
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        }).then(response => {
+            setUtrs(response.data)
+        }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
+    }
+
     async function loadUtrs() {
-        localStorage.getItem('isAdmin') ?
+        await sessionStorage.getItem('isAdmin') ?
 
             await api.get('utrs/', {
                 headers: {
@@ -57,11 +80,12 @@ const Home: React.FC = () => {
                 }
             }).then(response => {
                 setUtrs(response.data)
+                console.log(response.data)
             }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
 
             :
 
-            await api.get('utrs/' + localStorage.getItem('id_user'), {
+            await api.get('utrsbyUser/' + localStorage.getItem('id_user'), {
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
