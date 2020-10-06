@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api'
+import Header from '../Header'
 
 import { Container, Wrapper, WrapperCheckBox, Label, FormUtr, Input, Select, Option, ListUtrs, Utrs, CheckBox, TextInput, Button } from './styles';
 
@@ -40,8 +41,9 @@ const PlanoRega: React.FC = () => {
 
   return (
     <Container>
+        <Header/>
       <Wrapper>
-        <h1>Cadastrar UTR</h1>
+        <h1>Cadastrar plano de rega</h1>
         <FormUtr >
           <Label >Percentimetro</Label>
           <Input value={planoRega.percentimetro} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setPlanoRega({ ...planoRega, percentimetro: Number(text.target.value) })} />

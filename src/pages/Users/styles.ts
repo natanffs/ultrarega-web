@@ -65,7 +65,7 @@ export const Label = styled.div`
     display:flex;
     padding-left:20px;
     align-items:center;
-    color: white;
+    color: black;
     font-size: 18px;
 `
 export const LabelInput = styled.div`

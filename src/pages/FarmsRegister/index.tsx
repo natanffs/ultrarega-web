@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header'
 import api from '../../services/api'
 
-import { Container,Wrapper, Label, Button, FormFarm, Input, ListUsers, User, TextInput, CheckBox } from './styles';
+import { Container, Wrapper, Label, Button, FormFarm, Input, ListUsers, User, TextInput, CheckBox } from './styles';
 
 interface farmI {
-  codigo_fazenda?: number,
-  nome_fazenda?: string,
-  cnpj?: string,
-  inscricao_produtor?: string,
-  localizacao_fazenda?: string,
-  latitude?: number,
-  longitude?: number,
-  codigo_usuarios?: [number]
+    codigo_fazenda?: number,
+    nome_fazenda?: string,
+    cnpj?: string,
+    inscricao_produtor?: string,
+    localizacao_fazenda?: string,
+    latitude?: number,
+    longitude?: number,
+    codigo_usuarios?: [number]
 }
 
 interface userI {
-  codigo_usuario?: number,
-  nome?: string,
-  cpf?: string,
-  numero_matricula?: number,
-  senha?: string,
-  telefone?: string,
-  email?: string,
+    codigo_usuario?: number,
+    nome?: string,
+    cpf?: string,
+    numero_matricula?: number,
+    senha?: string,
+    telefone?: string,
+    email?: string,
 
 
 }

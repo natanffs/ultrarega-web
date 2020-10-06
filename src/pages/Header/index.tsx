@@ -25,6 +25,9 @@ const Header: React.FC = () => {
 
   function onSubmit() {
     localStorage.removeItem('token')
+    localStorage.removeItem('permissions_user')
+    localStorage.removeItem('id_user')
+    sessionStorage.removeItem('isAdmin')
     history.push('/login')
   }
 
