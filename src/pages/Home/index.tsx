@@ -31,7 +31,8 @@ interface utrI {
     potencial_hidrico?: number,
     sentido?: string,
     calcs?: calcsI[],
-    nows?: nowsI[]
+    nows?: nowsI[],
+
 }
 
 
@@ -39,8 +40,6 @@ interface utrI {
 const Home: React.FC = () => {
 
     const [utrs, setUtrs] = useState([])
-
-
     const history = useHistory()
 
     useEffect(() => {
@@ -57,6 +56,7 @@ const Home: React.FC = () => {
                 }
             }).then(response => {
                 setUtrs(response.data)
+               
             }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
 
             :
@@ -85,15 +85,17 @@ const Home: React.FC = () => {
                         <Label>Pivo</Label>
                         <Label>Estado</Label>
                         <Label>Lamina atual</Label>
+                        
                         <Label>Capacidade de campo</Label>
                         <Label>Potencial Hidrico</Label>
                         <Label>Ponto de murcha</Label>
+                        
                     </Labels>
                     {utrs.length > 0 && utrs.map((u: utrI) =>
                         <Utr key={u.codigo_utr}>
                             <NameItem >{u.nome_fazenda}</NameItem>
                             <NameItem onClick={() => { history.push(`/utrs/${u.codigo_utr}`) }}>{u.nome_pivo}</NameItem>
-                            <NameItem>{`em ${u.nows?.find(n => n.nome === 'posicao_angular')?.valor} de ${u.angulo_inicio} até ${u.angulo_termino} sentido ${u.sentido}`}</NameItem>
+                            <NameItem>{`em ${u.nows?.find(n => n.nome === 'posicao_angular')?.valor}º de ${u.angulo_inicio}º - ${u.angulo_termino}º - ${u.sentido}`}</NameItem>
                             <NameItem>{u.nows?.find(n => n.nome === 'taxa_lamina_atual')?.valor}mm</NameItem>
                             {u.calcs && <>
                                 <NameItem>{`${u.calcs[0]?.valor}${u.calcs[0]?.unidade_medida}`}</NameItem>

@@ -60,6 +60,7 @@ const FarmsRegister: React.FC = () => {
     })
   }
 
+  // busca os usuários para que possam ser vinculados a uma fazenda
   async function loadUsers() {
     await api.get('users', {
       headers: {

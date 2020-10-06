@@ -16,13 +16,17 @@ interface userI {
 
 }
 
+interface permissionI {
+  grupo_permissao: string,
+  item_permissao: string
+}
 
 
 const User: React.FC = () => {
 
   const [user, setUser] = useState<userI>({})
   const [editable, setEditable] = useState<boolean>(true)
-  // const [permissions, setPermissions] = useState<permissionI[]>([])
+  const [permissions, setPermissions] = useState<permissionI[]>([])
 
   useEffect(() => { loadUser() }, [])
 
@@ -60,6 +64,15 @@ const User: React.FC = () => {
     }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
 
+  function findPermission(permission:string){
+    let find = false
+      permissions.map((p:permissionI)=>{
+          if(p.item_permissao === permission) 
+         find = true
+      })
+      return find
+  }
+
   return (
     <Container>
       <Header />
@@ -94,7 +107,7 @@ const User: React.FC = () => {
             <br />
 
 
-            <Buttons>
+           {findPermission("AUTOU") &&  <Buttons>
               <Button onClick={() => {
                 setEditable(false)
               }}>Editar</Button>
@@ -102,7 +115,7 @@ const User: React.FC = () => {
               {!editable && <Button onClick={() => {
                 updateUser()
               }}>Salvar</Button>}
-            </Buttons>
+            </Buttons>}
           </DadosUser>
 
 

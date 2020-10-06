@@ -50,6 +50,7 @@ const Farms: React.FC = () => {
       setPermissions(JSON.parse(temp))
   }, [])
 
+  
   async function loadFarms() {
 
     localStorage.getItem('isAdmin') ?
@@ -73,7 +74,8 @@ const Farms: React.FC = () => {
         setFarms(response.data)
       }).catch((error) => { console.log('Não foi possivel carregar os dados' + error) })
   }
-
+  
+// função para procurar as permissões do usuario
   function findPermission(permission: string) {
     let find = false
     permissions.map((p: permissionI) => {
@@ -83,6 +85,7 @@ const Farms: React.FC = () => {
     return find
   }
 
+// no momento não é permitido realizar açõ de deletar
 
   // async function deleteFarm({ codigo_fazenda }: farmI) {
   //   await api.delete('farms/' + codigo_fazenda, {

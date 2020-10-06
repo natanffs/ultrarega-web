@@ -28,6 +28,7 @@ const Header: React.FC = () => {
     history.push('/login')
   }
 
+  // função para procurar as permissões do usuario
   function findPermission(permission:string){
     let find = false
       permissions.map((p:permissionI)=>{
@@ -64,7 +65,7 @@ const Header: React.FC = () => {
         <MenuDropdown onClick={() => {
           visibleGestao ? setVisibleGestao(false) : setVisibleGestao(true)
           setVisibleCadastrar(false)
-        }} className="dropdown">Gestão
+        }} className="dropdown">Editar
           <Dropdown style={{ display: visibleGestao ? 'flex' : 'none' }}>
             {findPermission("USUR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/usuarios'>Usuarios</MenuItem>}
             {findPermission("FAZR") && <MenuItem onClick={() => { setVisibleGestao(false) }} to='/fazendas'>Fazendas</MenuItem>}

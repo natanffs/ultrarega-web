@@ -33,20 +33,18 @@ const Login: React.FC = () => {
 
       const permissions = response.data.permissions
 
-      // permissions.map((p:permissionI)=>{
-      //     if(p.grupo_permissao === "000" && p.codigo_perissao === "ADMINISTRADOR")
-      //     history.push('admin/home')
-      // })
+     
       let isAdmin = false
       
       for (var i = 0; 1 < permissions.length; i++) {
         if (permissions[i].grupo_permissao === "000") {
           localStorage.setItem('isAdmin', "1")
-          history.push('/admin/home')
+          //history.push('/admin/home')
           isAdmin = true
         }
       }
-      if (!isAdmin) history.push('/home')
+      //if (!isAdmin) 
+      history.push('/home')
 
 
     }).catch(error => { console.log(error) })

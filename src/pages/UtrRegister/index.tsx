@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../../services/api'
 import Header from '../Header'
 
-import { Container, Wrapper,WrapperCheckBox, Label, FormUtr, Input, Select, Option, ListUtrs, Utrs,CheckBox, TextInput, Button  } from './styles';
+import { Container, Wrapper, WrapperCheckBox, Label, FormUtr, Input, Select, Option, ListUtrs, Utrs, CheckBox, TextInput, Button } from './styles';
 
 interface pivotI {
   codigo_pivo?: number,
   nome_pivo?: string,
-  
+
 
 }
 
@@ -21,24 +21,31 @@ interface modeUtrI {
 
 }
 
-interface utrI{
+interface utrI {
   descricao?: string,
   codigo_pivo?: number
+}
+interface visibleModelI{
+  codigo_item?: number,
+  nome?: string,
+  ordem_item?:number
 }
 
 const UtrRegister: React.FC = () => {
 
-  const [selectedVisibleModel, SetSelectedVisibleModel] = useState<number[]>([])
+  const [selectedVisibleModel, setSelectedVisibleModel] = useState<visibleModelI[]>([])
   const [selectedModels, setSelectedModels] = useState<number[]>([])
   const [selectedModelsNames, setSelectedModelsNames] = useState<string[]>([])
   const [modelUtrs, setModelUtrs] = useState([])
   const [pivots, setPivots] = useState([])
   const [utr, setUtr] = useState<utrI>({})
 
-  useEffect(()=>{
+ 
+
+  useEffect(() => {
     loadModelUtrs()
     loadPivots()
-  },[])
+  }, [])
 
   async function loadModelUtrs() {
     await api.get('modelUtrs', {
@@ -64,7 +71,7 @@ const UtrRegister: React.FC = () => {
 
   async function registerUtr() {
 
-   
+
     await api.post('utrs', {
 
       descricao: utr.descricao,
@@ -78,7 +85,7 @@ const UtrRegister: React.FC = () => {
       }
     }).then((response) => {
 
-       alert(`sucesso: ${response.data.message}`)
+      alert(`sucesso: ${response.data.message}`)
 
 
     }).catch((error) => {
@@ -97,7 +104,7 @@ const UtrRegister: React.FC = () => {
           <Input value={utr.descricao} onChange={(text: React.ChangeEvent<HTMLInputElement>) => setUtr({ ...utr, descricao: text.target.value })} />
           <br />
           <Label >Vincular Pivo</Label>
-          
+
           <Select onChange={(text) => setUtr({ ...utr, codigo_pivo: Number(text.target.value) })}>
             <Option selected>Selecione</Option>
             {pivots.length > 0 && pivots.map((p: pivotI) =>
@@ -105,37 +112,71 @@ const UtrRegister: React.FC = () => {
             )}
           </Select>
           <br />
-            
+
           <ListUtrs>
             <Label>Vincular Itens da UTR</Label>
             {modelUtrs.length > 0 && modelUtrs.map((mu: modeUtrI) =>
               <Utrs key={mu.codigo_item}>
                 <WrapperCheckBox>
-                <CheckBox type="checkbox" value={mu.codigo_item} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
-                  if (text.target.checked) {
-                    setSelectedModels([...selectedModels, Number(text.target.value)])
-                    setSelectedModelsNames([...selectedModelsNames, `${mu.nome}`])
-                  } else {
-                    setSelectedModels(selectedModels.filter(sm => sm !== Number(text.target.value)))
-                    setSelectedModelsNames(selectedModelsNames.filter(sm => sm !== (mu.nome)))
-                  }
-                }} />
-                <TextInput>{mu.nome}</TextInput>
+                  <CheckBox type="checkbox" value={mu.codigo_item} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
+                    if (text.target.checked) {
+                      setSelectedModels([...selectedModels, Number(text.target.value)])
+                      setSelectedModelsNames([...selectedModelsNames, `${mu.nome}`])
+                    } else {
+                      setSelectedModels(selectedModels.filter(sm => sm !== Number(text.target.value)))
+                      setSelectedModelsNames(selectedModelsNames.filter(sm => sm !== (mu.nome)))
+                    }
+                  }} />
+                  <TextInput>{mu.nome}</TextInput>
                 </WrapperCheckBox>
                 <WrapperCheckBox>
-                <CheckBox type="checkbox" value={mu.codigo_item} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
-                  if (text.target.checked) {
-                    SetSelectedVisibleModel([...selectedVisibleModel, Number(text.target.value)])
+                  <CheckBox type="checkbox" value={mu.codigo_item} onChange={(text: React.ChangeEvent<HTMLInputElement>) => {
+                    if (text.target.checked) {
+                     setSelectedVisibleModel([...selectedVisibleModel, {codigo_item:Number(text.target.value), nome: mu.nome} ])
+                    
+
+                    } else {
+                      setSelectedVisibleModel(selectedVisibleModel.filter(sm => sm.codigo_item !== Number(text.target.value)))
                    
-                  } else {
-                    SetSelectedVisibleModel(selectedVisibleModel.filter(sm => sm !== Number(text.target.value)))
-                   
-                  }
-                }} />
-                <TextInput>Visivel</TextInput>
+                    }
+                  }} />
+                  <TextInput>Visivel</TextInput>
+                  
                 </WrapperCheckBox>
+               
+
+
               </Utrs>)}
+            <br />
+            <Label>Ordenar exibição de campos (a ordem de exibição se inicia em 1 )</Label>
+
+            <ListUtrs>
+              {selectedVisibleModel.length>0  && selectedVisibleModel.map((vm:visibleModelI) => { return(
+                <Utrs key={vm.codigo_item}>
+                <WrapperCheckBox >
+                  <TextInput>{vm.nome}</TextInput>
+                  <Input value={vm.ordem_item ? vm.ordem_item :  vm.ordem_item = 0} onChange={(text: React.ChangeEvent<HTMLInputElement>)=>{// var inde = selectedVisibleModel.indexOf( {codigo_item: vm.codigo_item})
+                    setSelectedVisibleModel(selectedVisibleModel.map(( selected: visibleModelI, index:number)=>{
+                     if(selected.codigo_item === vm.codigo_item){
+                         selected.ordem_item = Number(text.target.value)
+                     }
+                   
+                     return selected
+                     
+                   }))
+                   }
+                  }/>
+                </WrapperCheckBox>
+                </Utrs>
+              )})
+
+
+              }
+              
+            </ListUtrs>
+           <br/>
             <Button onClick={registerUtr}>Cadastrar</Button>
+            <br/>
           </ListUtrs>
 
         </FormUtr>

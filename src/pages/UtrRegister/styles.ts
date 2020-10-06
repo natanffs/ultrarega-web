@@ -120,6 +120,7 @@ export const TextInput = styled.label`
 color:gray;
 font-size:15px;
 padding-left: 10px;
+padding-right: 10px;
 `
 export const CheckBox = styled.input`
     width:20px;
